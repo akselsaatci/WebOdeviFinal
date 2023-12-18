@@ -5,8 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Şikayet Var</title>
-    <link rel="stylesheet" href="./assets/css/bootstrap.min.css">
-    <link rel="stylesheet" href="./assets/css/styles.css">
+    <link rel="stylesheet" href="/assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/assets/css/styles.css">
 </head>
 
 <body>
@@ -14,25 +14,28 @@
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
         <div class="container-fluid">
             <a class="navbar-brand" href="/">Şikayet Sepeti</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
-                aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
+            <div class=" navbar-collapse" id="navbarSupportedContent">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
                 <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                     <div class="navbar-nav">
                         <a class="nav-link active" aria-current="page" href="/">Ana Sayfa</a>
-                        <a class="nav-link" href="#">Şikayetler</a>
-                        <a class="nav-link" href="#">Son Şikayetler</a>
+                        <a class="nav-link" href="/musteri/profil.html">Profilim</a>
+                        <a class="nav-link" href="/musteri/sikayetlerim.html">Şikayetlerim</a>
                     </div>
                 </div>
+            </div>
 
 
             <form class="d-flex" role="search">
                 <div class="align-content-center d-flex me-3">
-                    <a class="my-auto link-dark custom-link" data-bs-toggle="modal"
-                        data-bs-target="#girisYapModal">Giriş Yap / Kayıt Ol</a>
+                    <a class="my-auto link-dark custom-link" href="/firma/profil.html">Profil</a>
                 </div>
-                <button class="btn btn-outline-warning" type="submit">Şikayet Oluştur</button>
+                <button type="button" class="btn btn-outline-warning" data-bs-toggle="modal"
+                data-bs-target="#sikayetOlusturModal">Şikayet Oluştur</button>
             </form>
         </div>
     </nav>
@@ -41,8 +44,8 @@
     <div class="container">
         <div class="my-auto">
             <div class="row pt-5">
-                <div class="col-md-6 col-12 mt-5 order-2 order-md-0">
-                    <h1 class="mt-5">
+                <div class="col-lg-6 col-12 mt-5">
+                    <h1>
                         Şikayetiniz İçin <br> Çözümümüz Var
                     </h1>
 
@@ -53,15 +56,15 @@
                     </div>
 
                 </div>
-                <div class="col-md-6 order-0 order-md-2 d-lg-block ">
+                <div class="col-lg-6 d-none d-lg-block ">
                     <div class="img-fluid">
-                        <img class="img-fluid" src="./assets/img/banner.png" alt="hero">
+                        <img class="img-fluid" src="/assets/img/banner.png" alt="hero">
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <div class="bg-body-tertiary mt-5 ">
+    <div class="bg-body-secondary mt-5 ">
         <div class="container py-5">
             <h3 class="text-center py-4">Çok Konuşulanlar</h3>
             <div id="cok_konusulanlar_slider" class="carousel slide my-3">
@@ -120,9 +123,8 @@
                 </div>
             </div>
             <div class="col-md-6 col-12">
-                <iframe class="youtube-video" width="560" height="315"
-                    src="https://www.youtube.com/embed/dQw4w9WgXcQ?si=8fur6IWJeiMQlVTN" title="YouTube video player"
-                    frameborder="0"
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/dQw4w9WgXcQ?si=8fur6IWJeiMQlVTN"
+                    title="YouTube video player" frameborder="0"
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                     allowfullscreen></iframe>
             </div>
@@ -235,8 +237,46 @@
         </div>
     </div>
 
+    <div class="modal modal-lg fade" id="sikayetOlusturModal" tabindex="-1" aria-labelledby="sikayetOlusturModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="sikayetOlusturModalLabel">Şikayet Ekle</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="mb-3">
+                        <label for="firmaSecimi" class="form-label fw-bold">Firma Seçimi:</label>
+                        <select class="form-control" id="firmaSecimi">
+                            <option value="firma1">Bosch</option>
+                            <option value="firma2">LG</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="urunSecimi" class="form-label fw-bold">Ürün Seçimi:</label>
+                        <select class="form-control" id="urunSecimi">
+                            <option value="buzdolabi">Buzdolabı</option>
+                            <option value="televizyon">Televizyon</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="sikayetMetni" class="form-label fw-bold">Şikayetiniz:</label>
+                        <textarea class="form-control" id="sikayetMetni" rows="3" placeholder="Şikayetinizi buraya yazın"></textarea>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">İptal et</button>
+                <button type="button" class="btn btn-primary">Oluştur</button>
+            </div>
+        </div>
+    </div>
+</div>
 
-    <script src="./assets/js/bootstrap.min.js"></script>
+
+    <script src="/assets/js/bootstrap.min.js"></script>
 </body>
 
 </html>

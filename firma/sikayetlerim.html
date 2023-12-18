@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Şikayet Sepeti</title>
+    <link rel="stylesheet" href="/assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/assets/css/styles.css">
+</head>
+
+<body>
+
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/">Şikayet Sepeti</a>
+            <div class=" navbar-collapse" id="navbarSupportedContent">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                    <div class="navbar-nav">
+                        <a class="nav-link" aria-current="page" href="/">Ana Sayfa</a>
+                        <a class="nav-link" href="/firma/profil.html">Profilim</a>
+                        <a class="nav-link active" href="/firma/sikayetlerim.html">Şikayetlerim</a>
+                    </div>
+                </div>
+            </div>
+
+
+            <form class="d-flex" role="search">
+                <div class="align-content-center d-flex me-3">
+                    <a class="my-auto link-dark custom-link" href="/firma/profil.html">Profil</a>
+                </div>
+                <button class="btn btn-outline-warning" type="submit">Şikayet Oluştur</button>
+            </form>
+        </div>
+    </nav>
+
+
+    <div class="container py-5">
+        <div class="row justify-content-end my-3">
+            <div class="col-auto">
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="Şikayet ara" aria-label="Recipient's username"
+                        aria-describedby="basic-addon2">
+                </div>
+            </div>
+            <button class="btn btn-outline-primary col-auto" type="submit">Ara</button>
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Şikayeti Yapan Adı Soyadı</th>
+                            <th scope="col">Şikayet</th>
+                            <th scope="col">Şikayet Tarihi</th>
+                            <th scope="col"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th scope="row">1</th>
+                            <td>Alperen Erdem</td>
+                            <td>Buzdolabı çalışmıyor</td>
+                            <td>19/12/2023</td>
+                            <td>
+                                <button class="btn btn-primary" data-bs-toggle="modal"
+                                    data-bs-target="#cevapVerModal">Cevapla</button>
+                            </td>
+                        </tr>
+
+
+                        <tr>
+                            <th scope="row">2</th>
+                            <td>Ayşe Yılmaz</td>
+                            <td>Televizyon ekranı kararıyor</td>
+                            <td>20/12/2023</td>
+                            <td>
+                                <button class="btn btn-primary" data-bs-toggle="modal"
+                                    data-bs-target="#cevapVerModal">Cevapla</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row">3</th>
+                            <td>Mehmet Aksoy</td>
+                            <td>İnternet bağlantısı yok</td>
+                            <td>21/12/2023</td>
+                            <td>
+                                <button class="btn btn-primary" data-bs-toggle="modal"
+                                    data-bs-target="#cevapVerModal">Cevapla</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row">4</th>
+                            <td>Zeynep Çelik</td>
+                            <td>Bilgisayar çok yavaş</td>
+                            <td>22/12/2023</td>
+                            <td>
+                                <button class="btn btn-primary" data-bs-toggle="modal"
+                                    data-bs-target="#cevapVerModal">Cevapla</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row">5</th>
+                            <td>Mustafa Kaya</td>
+                            <td>Yemek pişirme programı çalışmıyor</td>
+                            <td>23/12/2023</td>
+                            <td>
+                                <button class="btn btn-primary" data-bs-toggle="modal"
+                                    data-bs-target="#cevapVerModal">Cevapla</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row">6</th>
+                            <td>Gizem Yıldız</td>
+                            <td>Telefon şarj olmuyor</td>
+                            <td>24/12/2023</td>
+                            <td>
+                                <button class="btn btn-primary" data-bs-toggle="modal"
+                                    data-bs-target="#cevapVerModal">Cevapla</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row">7</th>
+                            <td>Emre Korkmaz</td>
+                            <td>Klima soğutmuyor</td>
+                            <td>25/12/2023</td>
+                            <td>
+                                <button class="btn btn-success">Cevaplandı</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row">8</th>
+                            <td>Burcu Yaman</td>
+                            <td>Çamaşır makinesi su boşaltmıyor</td>
+                            <td>26/12/2023</td>
+                            <td>
+                                <button class="btn btn-primary" data-bs-toggle="modal"
+                                    data-bs-target="#cevapVerModal">Cevapla</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row">9</th>
+                            <td>Ali Demir</td>
+                            <td>Laptop ekranında çizgiler var</td>
+                            <td>27/12/2023</td>
+                            <td>
+                                <button class="btn btn-primary" data-bs-toggle="modal"
+                                    data-bs-target="#cevapVerModal">Cevapla</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row">10</th>
+                            <td>Aylin Taşkın</td>
+                            <td>Elektrik süpürgesi sesli çalışıyor</td>
+                            <td>28/12/2023</td>
+                            <td>
+                                <button class="btn btn-primary" data-bs-toggle="modal"
+                                    data-bs-target="#cevapVerModal">Cevapla</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row">11</th>
+                            <td>Can Özkan</td>
+                            <td>Mikrodalga fırın ısınmıyor</td>
+                            <td>29/12/2023</td>
+                            <td>
+                                <button class="btn btn-success">Cevaplandı</button>
+                            </td>
+                        </tr>
+
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="container">
+            <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
+                <p class="col-md-4 mb-0 text-body-secondary">© 2023 Şikayet Sepeti, LTD ŞTİ</p>
+                <ul class="nav col-md-4 justify-content-end">
+                    <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">Ana Sayfa</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">Şikayetler</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">Son Şikayetler</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">Şikayet Oluştur</a></li>
+                </ul>
+            </footer>
+        </div>
+
+
+
+
+        <div class="modal modal-lg fade" id="girisYapModal" tabindex="-1" aria-labelledby="girisYapModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="girisYapModalLabel">Giriş Yap</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body p-4">
+                        <div class="row justify-content-end mb-3">
+                            <div class="col-auto">
+                                <a class="my-auto link-dark custom-link" data-bs-toggle="modal"
+                                    data-bs-target="#kayitOlModal">Hesabınız yok mu? Hemen Kayıt Olun!</a>
+                            </div>
+                        </div>
+                        <div class="container">
+                            <div class="row">
+                                <div class="mb-3 col-12 col-lg-6">
+                                    <label class="form-label">E-mail</label>
+                                    <input type="email" class="form-control" placeholder="Email adresinizi giriniz"
+                                        aria-label="Username" aria-describedby="basic-addon1">
+                                </div>
+                                <div class="mb-3 col-12 col-lg-6">
+                                    <label class="form-label">Şifre</label>
+                                    <input type="password" class="form-control" placeholder="Şifrenizi giriniz"
+                                        aria-label="Password" aria-describedby="basic-addon2">
+                                </div>
+                                <div class="row justify-content-between pe-0">
+                                    <a href="#" class="link-dark col-auto align-items-center d-flex">Şifremi Unuttum</a>
+                                    <button type="button" class="btn btn-primary col-4 ">Giriş Yap</button>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+        <div class="modal modal-lg fade" id="kayitOlModal" tabindex="-1" aria-labelledby="kayitOlModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="kayitOlModalLabel">Kayıt Ol</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body p-4">
+                        <div class="row justify-content-end mb-3">
+                            <div class="col-auto">
+
+                            </div>
+                        </div>
+                        <div class="container">
+                            <div class="row">
+                                <div class="mb-3 col-12 col-lg-6">
+                                    <label class="form-label">E-mail</label>
+                                    <input type="email" class="form-control" placeholder="Email adresinizi giriniz"
+                                        aria-label="Username" aria-describedby="basic-addon1">
+                                </div>
+                                <div class="mb-3 col-12 col-lg-6">
+                                    <label class="form-label">Şifre</label>
+                                    <input type="password" class="form-control" placeholder="Şifrenizi giriniz"
+                                        aria-label="Password" aria-describedby="basic-addon2">
+                                </div>
+                                <div class="row justify-content-end pe-0">
+                                    <button type="button" class="btn btn-primary col-4 ">Kayıt Ol</button>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="modal modal-lg fade" id="cevapVerModal" tabindex="-1" aria-labelledby="cevapVerModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="cevapVerModalLabel">Cevap Ver</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <p><span class="fw-bold">Şikayet : </span> Buzdolabı çalışmıyor.</p>
+                        <p><span class="fw-bold">Şikayet Eden Kişi : </span> Alperen Erdem</p>
+                        <p><span class="fw-bold">Şikayet Tarihi : </span> 19/12/2023</p>
+                        <div class="mb-3">
+                            <label for="exampleFormControlTextarea1" class="form-label fw-bold">Cevabınızı giriniz</label>
+                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">İptal et</button>
+                        <button type="button" class="btn btn-danger">Şikayeti Kapat</button>
+                        <button type="button" class="btn btn-primary">Cevabı Gönder</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <script src="/assets/js/bootstrap.min.js"></script>
+</body>
+
+</html>

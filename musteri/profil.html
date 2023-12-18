@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Şikayet Var</title>
+    <link rel="stylesheet" href="/assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/assets/css/styles.css">
+</head>
+
+<body>
+
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/">Şikayet Sepeti</a>
+            <div class=" navbar-collapse" id="navbarSupportedContent">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                    <div class="navbar-nav">
+                        <a class="nav-link" aria-current="page" href="/">Ana Sayfa</a>
+                        <a class="nav-link active" href="#">Profilim</a>
+                        <a class="nav-link" href="/musteri/sikayetlerim.html">Şikayetlerim</a>
+                    </div>
+                </div>
+            </div>
+
+
+            <form class="d-flex" role="search">
+                <div class="align-content-center d-flex me-3">
+                    <a class="my-auto link-dark custom-link" href="/musteri/profil.html">Profil</a>
+                </div>
+                <button type="button" class="btn btn-outline-warning" data-bs-toggle="modal"
+                data-bs-target="#sikayetOlusturModal">Şikayet Oluştur</button>
+            </form>
+        </div>
+    </nav>
+
+
+    <div class="container py-5">
+        <h4>Cesur Akçay Profili</h4>
+        <form>
+            <div class="row mb-3">
+                <div class="row mb-3">
+                    <label for="adSoyad" class="col-md-4 col-lg-3 col-form-label">Adınız Soyadınız</label>
+                    <div class="col-md-8 col-lg-9">
+                        <input name="adSoyad" type="text" class="form-control" id="adSoyad" value="Cesur Akçay">
+                    </div>
+                </div>
+
+                <div class="row mb-3">
+                    <label for="telefonNo" class="col-md-4 col-lg-3 col-form-label">Telefon Numaranız</label>
+                    <div class="col-md-8 col-lg-9">
+                        <input name="telefonNo" type="text" class="form-control" id="telefonNo" value="0123456789">
+                    </div>
+                </div>
+
+                <div class="row mb-3">
+                    <label for="email" class="col-md-4 col-lg-3 col-form-label">E-Mail Adresiniz</label>
+                    <div class="col-md-8 col-lg-9">
+                        <input name="email" type="email" class="form-control" id="email" value="cesurakcay@gmail.com">
+                    </div>
+                </div>
+
+
+                <div class="row mb-3">
+                    <label for="sifre" class="col-md-4 col-lg-3 col-form-label">Şifreniz</label>
+                    <div class="col-md-8 col-lg-9">
+                        <input name="sifre" type="password" class="form-control" id="sifre" value="*******">
+                    </div>
+                </div>      
+
+                <div class="text-end">
+                    <button type="submit" class="btn btn-primary me-4">Değişiklikleri Kaydet</button>
+                </div>
+        </form>
+    </div>
+
+    <div class="container">
+        <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
+            <p class="col-md-4 mb-0 text-body-secondary">© 2023 Şikayet Sepeti, LTD ŞTİ</p>
+            <ul class="nav col-md-4 justify-content-end">
+                <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">Ana Sayfa</a></li>
+                <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">Şikayetler</a></li>
+                <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">Son Şikayetler</a></li>
+                <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">Şikayet Oluştur</a></li>
+            </ul>
+        </footer>
+    </div>
+
+
+
+
+    <div class="modal modal-lg fade" id="girisYapModal" tabindex="-1" aria-labelledby="girisYapModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="girisYapModalLabel">Giriş Yap</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body p-4">
+                    <div class="row justify-content-end mb-3">
+                        <div class="col-auto">
+                            <a class="my-auto link-dark custom-link" data-bs-toggle="modal"
+                                data-bs-target="#kayitOlModal">Hesabınız yok mu? Hemen Kayıt Olun!</a>
+                        </div>
+                    </div>
+                    <div class="container">
+                        <div class="row">
+                            <div class="mb-3 col-12 col-lg-6">
+                                <label class="form-label">E-mail</label>
+                                <input type="email" class="form-control" placeholder="Email adresinizi giriniz"
+                                    aria-label="Username" aria-describedby="basic-addon1">
+                            </div>
+                            <div class="mb-3 col-12 col-lg-6">
+                                <label class="form-label">Şifre</label>
+                                <input type="password" class="form-control" placeholder="Şifrenizi giriniz"
+                                    aria-label="Password" aria-describedby="basic-addon2">
+                            </div>
+                            <div class="row justify-content-between pe-0">
+                                <a href="#" class="link-dark col-auto align-items-center d-flex">Şifremi Unuttum</a>
+                                <button type="button" class="btn btn-primary col-4 ">Giriş Yap</button>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="modal modal-lg fade" id="kayitOlModal" tabindex="-1" aria-labelledby="kayitOlModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="kayitOlModalLabel">Kayıt Ol</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body p-4">
+                    <div class="row justify-content-end mb-3">
+                        <div class="col-auto">
+
+                        </div>
+                    </div>
+                    <div class="container">
+                        <div class="row">
+                            <div class="mb-3 col-12 col-lg-6">
+                                <label class="form-label">E-mail</label>
+                                <input type="email" class="form-control" placeholder="Email adresinizi giriniz"
+                                    aria-label="Username" aria-describedby="basic-addon1">
+                            </div>
+                            <div class="mb-3 col-12 col-lg-6">
+                                <label class="form-label">Şifre</label>
+                                <input type="password" class="form-control" placeholder="Şifrenizi giriniz"
+                                    aria-label="Password" aria-describedby="basic-addon2">
+                            </div>
+                            <div class="row justify-content-end pe-0">
+                                <button type="button" class="btn btn-primary col-4 ">Kayıt Ol</button>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal modal-lg fade" id="sikayetOlusturModal" tabindex="-1" aria-labelledby="sikayetOlusturModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="sikayetOlusturModalLabel">Şikayet Ekle</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="mb-3">
+                        <label for="firmaSecimi" class="form-label fw-bold">Firma Seçimi:</label>
+                        <select class="form-control" id="firmaSecimi">
+                            <option value="firma1">Bosch</option>
+                            <option value="firma2">LG</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="urunSecimi" class="form-label fw-bold">Ürün Seçimi:</label>
+                        <select class="form-control" id="urunSecimi">
+                            <option value="buzdolabi">Buzdolabı</option>
+                            <option value="televizyon">Televizyon</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="sikayetMetni" class="form-label fw-bold">Şikayetiniz:</label>
+                        <textarea class="form-control" id="sikayetMetni" rows="3" placeholder="Şikayetinizi buraya yazın"></textarea>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">İptal et</button>
+                <button type="button" class="btn btn-primary">Oluştur</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+    <script src="/assets/js/bootstrap.min.js"></script>
+</body>
+
+</html>
