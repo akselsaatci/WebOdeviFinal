@@ -44,8 +44,8 @@
     <div class="container">
         <div class="my-auto">
             <div class="row pt-5">
-                <div class="col-lg-6 col-12 mt-5">
-                    <h1>
+                <div class="col-md-6 col-12 order-2 order-md-0" style="padding-top: 10%;">
+                    <h1 class="mt-5">
                         Şikayetiniz İçin <br> Çözümümüz Var
                     </h1>
 
@@ -56,7 +56,7 @@
                     </div>
 
                 </div>
-                <div class="col-lg-6 d-none d-lg-block ">
+                <div class="col-md-6 order-0 order-md-2 d-lg-block ">
                     <div class="img-fluid">
                         <img class="img-fluid" src="/assets/img/banner.png" alt="hero">
                     </div>
@@ -64,7 +64,7 @@
             </div>
         </div>
     </div>
-    <div class="bg-body-secondary mt-5 ">
+    <div class="bg-body-tertiary mt-5 ">
         <div class="container py-5">
             <h3 class="text-center py-4">Çok Konuşulanlar</h3>
             <div id="cok_konusulanlar_slider" class="carousel slide my-3">
@@ -123,8 +123,9 @@
                 </div>
             </div>
             <div class="col-md-6 col-12">
-                <iframe width="560" height="315" src="https://www.youtube.com/embed/dQw4w9WgXcQ?si=8fur6IWJeiMQlVTN"
-                    title="YouTube video player" frameborder="0"
+                <iframe class="youtube-video" width="560" height="315"
+                    src="https://www.youtube.com/embed/dQw4w9WgXcQ?si=8fur6IWJeiMQlVTN" title="YouTube video player"
+                    frameborder="0"
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                     allowfullscreen></iframe>
             </div>
@@ -168,7 +169,7 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body p-4">
-                    <div class="row justify-content-end mb-3">
+                    <div class="row justify-content-end">
                         <div class="col-auto">
                             <a class="my-auto link-dark custom-link" data-bs-toggle="modal"
                                 data-bs-target="#kayitOlModal">Hesabınız yok mu? Hemen Kayıt Olun!</a>
@@ -188,7 +189,7 @@
                             </div>
                             <div class="row justify-content-between pe-0">
                                 <a href="#" class="link-dark col-auto align-items-center d-flex">Şifremi Unuttum</a>
-                                <button type="button" class="btn btn-primary col-4 ">Giriş Yap</button>
+                                <a type="button" class="btn btn-primary col-4 " href="/firma">Giriş Yap</a>
 
                             </div>
                         </div>
@@ -209,11 +210,7 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body p-4">
-                    <div class="row justify-content-end mb-3">
-                        <div class="col-auto">
-
-                        </div>
-                    </div>
+                    
                     <div class="container">
                         <div class="row">
                             <div class="mb-3 col-12 col-lg-6">
@@ -236,44 +233,6 @@
             </div>
         </div>
     </div>
-
-    <div class="modal modal-lg fade" id="sikayetOlusturModal" tabindex="-1" aria-labelledby="sikayetOlusturModalLabel"
-    aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h1 class="modal-title fs-5" id="sikayetOlusturModalLabel">Şikayet Ekle</h1>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <form>
-                    <div class="mb-3">
-                        <label for="firmaSecimi" class="form-label fw-bold">Firma Seçimi:</label>
-                        <select class="form-control" id="firmaSecimi">
-                            <option value="firma1">Bosch</option>
-                            <option value="firma2">LG</option>
-                        </select>
-                    </div>
-                    <div class="mb-3">
-                        <label for="urunSecimi" class="form-label fw-bold">Ürün Seçimi:</label>
-                        <select class="form-control" id="urunSecimi">
-                            <option value="buzdolabi">Buzdolabı</option>
-                            <option value="televizyon">Televizyon</option>
-                        </select>
-                    </div>
-                    <div class="mb-3">
-                        <label for="sikayetMetni" class="form-label fw-bold">Şikayetiniz:</label>
-                        <textarea class="form-control" id="sikayetMetni" rows="3" placeholder="Şikayetinizi buraya yazın"></textarea>
-                    </div>
-                </form>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">İptal et</button>
-                <button type="button" class="btn btn-primary">Oluştur</button>
-            </div>
-        </div>
-    </div>
-</div>
 
 
     <script src="/assets/js/bootstrap.min.js"></script>
