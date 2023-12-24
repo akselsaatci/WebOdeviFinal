@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Şikayet Var</title>
+    <title>Şikayet Sepeti</title>
     <link rel="stylesheet" href="/assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="/assets/css/styles.css">
 </head>
@@ -14,28 +14,24 @@
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
         <div class="container-fluid">
             <a class="navbar-brand" href="/">Şikayet Sepeti</a>
-            <div class=" navbar-collapse" id="navbarSupportedContent">
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                    data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false"
-                    aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-                    <div class="navbar-nav">
-                        <a class="nav-link active" aria-current="page" href="/">Ana Sayfa</a>
-                        <a class="nav-link" href="/musteri/profil.html">Profilim</a>
-                        <a class="nav-link" href="/musteri/sikayetlerim.html">Şikayetlerim</a>
-                    </div>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
+                aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span></button>
+
+            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                <div class="navbar-nav">
+                    <a class="nav-link active" aria-current="page" href="/">Ana Sayfa</a>
+                    <a class="nav-link" href="/musteri/profil.html">Profilim</a>
+                    <a class="nav-link" href="/musteri/sikayetlerim.html">Şikayetlerim</a>
                 </div>
             </div>
 
-
-            <form class="d-flex" role="search">
+            <form class="d-none d-md-flex" role="search">
                 <div class="align-content-center d-flex me-3">
-                    <a class="my-auto link-dark custom-link" href="/firma/profil.html">Profil</a>
+                    <a class="my-auto link-dark custom-link" href="/musteri/profil.html">Profil</a>
                 </div>
                 <button type="button" class="btn btn-outline-warning" data-bs-toggle="modal"
-                data-bs-target="#sikayetOlusturModal">Şikayet Oluştur</button>
+                    data-bs-target="#sikayetOlusturModal">Şikayet Oluştur</button>
             </form>
         </div>
     </nav>
@@ -210,7 +206,7 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body p-4">
-                    
+
                     <div class="container">
                         <div class="row">
                             <div class="mb-3 col-12 col-lg-6">

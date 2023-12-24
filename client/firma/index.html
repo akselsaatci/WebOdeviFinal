@@ -4,9 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Şikayet Var</title>
-    <link rel="stylesheet" href="./assets/css/bootstrap.min.css">
-    <link rel="stylesheet" href="./assets/css/styles.css">
+    <title>Şikayet Sepeti</title>
+    <link rel="stylesheet" href="/assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/assets/css/styles.css">
 </head>
 
 <body>
@@ -16,31 +16,26 @@
             <a class="navbar-brand" href="/">Şikayet Sepeti</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
                 aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
+                <span class="navbar-toggler-icon"></span></button>
+
             <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                 <div class="navbar-nav">
                     <a class="nav-link active" aria-current="page" href="/">Ana Sayfa</a>
-                    <a class="nav-link" href="#">Şikayetler</a>
-                    <a class="nav-link" href="#">Son Şikayetler</a>
-                    <a class="nav-link d-block d-md-none" data-bs-toggle="modal" data-bs-target="#girisYapModal">Giriş
-                        Yap / Kayıt Ol</a>
-                    <a class="nav-link d-block d-md-none" href="#">Şikayet Oluştur</a>
-
+                    <a class="nav-link" href="/firma/profil.html">Profilim</a>
+                    <a class="nav-link" href="/firma/sikayetlerim.html">Şikayetlerim</a>
                 </div>
             </div>
 
 
             <form class="d-none d-md-flex" role="search">
                 <div class="align-content-center d-flex me-3">
-                    <a class="my-auto link-dark custom-link" data-bs-toggle="modal"
-                        data-bs-target="#girisYapModal">Giriş Yap / Kayıt Ol</a>
+                    <a class="my-auto link-dark custom-link" href="/firma/profil.html">Profil</a>
                 </div>
-                <button class="btn btn-outline-warning" type="submit">Şikayet Oluştur</button>
+                <button type="button" class="btn btn-outline-warning" data-bs-toggle="modal"
+                    data-bs-target="#sikayetOlusturModal">Şikayet Oluştur</button>
             </form>
         </div>
     </nav>
-
 
     <div class="container">
         <div class="my-auto">
@@ -59,7 +54,7 @@
                 </div>
                 <div class="col-md-6 order-0 order-md-2 d-lg-block ">
                     <div class="img-fluid">
-                        <img class="img-fluid" src="./assets/img/banner.png" alt="hero">
+                        <img class="img-fluid" src="/assets/img/banner.png" alt="hero">
                     </div>
                 </div>
             </div>
@@ -236,7 +231,7 @@
     </div>
 
 
-    <script src="./assets/js/bootstrap.min.js"></script>
+    <script src="/assets/js/bootstrap.min.js"></script>
 </body>
 
 </html>

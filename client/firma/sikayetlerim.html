@@ -14,27 +14,25 @@
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
         <div class="container-fluid">
             <a class="navbar-brand" href="/">Şikayet Sepeti</a>
-            <div class=" navbar-collapse" id="navbarSupportedContent">
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                    data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false"
-                    aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-                    <div class="navbar-nav">
-                        <a class="nav-link" aria-current="page" href="/firma/">Ana Sayfa</a>
-                        <a class="nav-link" href="/firma/profil.html">Profilim</a>
-                        <a class="nav-link active" href="/firma/sikayetlerim.html">Şikayetlerim</a>
-                    </div>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
+                aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span></button>
+
+            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                <div class="navbar-nav">
+                    <a class="nav-link" aria-current="page" href="/">Ana Sayfa</a>
+                    <a class="nav-link" href="/firma/profil.html">Profilim</a>
+                    <a class="nav-link active" href="/firma/sikayetlerim.html">Şikayetlerim</a>
                 </div>
             </div>
 
 
-            <form class="d-flex" role="search">
+            <form class="d-none d-md-flex" role="search">
                 <div class="align-content-center d-flex me-3">
                     <a class="my-auto link-dark custom-link" href="/firma/profil.html">Profil</a>
                 </div>
-                <button class="btn btn-outline-warning" type="submit">Şikayet Oluştur</button>
+                <button type="button" class="btn btn-outline-warning" data-bs-toggle="modal"
+                    data-bs-target="#sikayetOlusturModal">Şikayet Oluştur</button>
             </form>
         </div>
     </nav>
@@ -285,7 +283,8 @@
                         <p><span class="fw-bold">Şikayet Eden Kişi : </span> Alperen Erdem</p>
                         <p><span class="fw-bold">Şikayet Tarihi : </span> 19/12/2023</p>
                         <div class="mb-3">
-                            <label for="exampleFormControlTextarea1" class="form-label fw-bold">Cevabınızı giriniz</label>
+                            <label for="exampleFormControlTextarea1" class="form-label fw-bold">Cevabınızı
+                                giriniz</label>
                             <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
                         </div>
                     </div>
