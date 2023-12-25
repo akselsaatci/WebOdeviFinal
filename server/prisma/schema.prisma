@@ -21,32 +21,33 @@ model User {
 }
 
 model Complaint {
-  id         Int              @id @default(autoincrement())
+  id         Int       @id @default(autoincrement())
   title      String
   content    String
   answer     String?
-  published  Boolean          @default(false)
-  author     User             @relation(fields: [authorTc], references: [tc])
+  author     User      @relation(fields: [authorTc], references: [tc])
   authorTc   String
-  company    Company          @relation(fields: [companyId], references: [id])
+  company    Company   @relation(fields: [companyId], references: [id])
   companyId  Int
-  createdAt  DateTime         @default(now())
+  createdAt  DateTime  @default(now())
   answeredAt DateTime?
-  likeCounts Int              @default(0)
-  images     ComplaintImage[]
-}
-
-model ComplaintImage {
-  id          Int       @id @default(autoincrement())
-  url         String
-  complaint   Complaint @relation(fields: [complaintId], references: [id])
-  complaintId Int
 }
 
 model Company {
-  id                       Int         @id @default(autoincrement())
+  id                       Int             @id @default(autoincrement())
   authorizedPersonName     String
-  authorizedPersonEmail    String      @unique
+  name                     String
+  authorizedPersonPhone    String
+  authorizedPersonEmail    String          @unique
   authorizedPersonPassword String
   complaints               Complaint[]
+  category                 CompanyCategory @relation(fields: [categoryId], references: [id])
+  categoryId               Int
+}
+
+model CompanyCategory {
+  id   Int    @id @default(autoincrement())
+  name String
+
+  Company Company[]
 }

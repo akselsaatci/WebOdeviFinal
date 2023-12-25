@@ -1,10 +1,17 @@
 // src/index.js
 import express, { Express, Request, Response } from "express";
 import dotenv from "dotenv";
+import bodyParser from 'body-parser';
+import cookieParser from "cookie-parser";
 
 dotenv.config();
 
 const app: Express = express();
+app.use(cookieParser());
+app.use(bodyParser.urlencoded({ extended: false }));
+
+// Use express.json() middleware to parse JSON bodies
+app.use(express.json());
 const port = process.env.PORT ?? 3000;
 
 app.get("/", (req: Request, res: Response) => {
