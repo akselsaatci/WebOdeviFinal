@@ -52,14 +52,14 @@
                     <thead>
                         <tr>
                             <th scope="col">#</th>
-                            <th scope="col">Firma Adı</th>
-                            <th scope="col">Ürün Adı</th>
-                            <th scope="col">Şikayet</th>
+                            <th scope="col">Başlık</th>
+                            <th scope="col">İçerik</th>
+                            <th scope="col">Cevap</th>
                             <th scope="col">Şikayet Tarihi</th>
                             <th scope="col"></th>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody id="complaints">
                         <tr>
                             <th scope="row">1</th>
                             <td>Bosch</td>
@@ -208,7 +208,8 @@
         </div>
 
 
-        <div class="modal modal-lg fade" id="sikayetDuzenleModal" tabindex="-1" aria-labelledby="sikayetDuzenleModalLabel" aria-hidden="true">
+        <div class="modal modal-lg fade" id="sikayetDuzenleModal" tabindex="-1"
+            aria-labelledby="sikayetDuzenleModalLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -235,8 +236,8 @@
         </div>
 
 
-        <div class="modal modal-lg fade" id="sikayetOlusturModal" tabindex="-1" aria-labelledby="sikayetOlusturModalLabel"
-            aria-hidden="true">
+        <div class="modal modal-lg fade" id="sikayetOlusturModal" tabindex="-1"
+            aria-labelledby="sikayetOlusturModalLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -261,7 +262,8 @@
                             </div>
                             <div class="mb-3">
                                 <label for="sikayetMetni" class="form-label fw-bold">Şikayetiniz:</label>
-                                <textarea class="form-control" id="sikayetMetni" rows="3" placeholder="Şikayetinizi buraya yazın"></textarea>
+                                <textarea class="form-control" id="sikayetMetni" rows="3"
+                                    placeholder="Şikayetinizi buraya yazın"></textarea>
                             </div>
                         </form>
                     </div>
@@ -275,6 +277,53 @@
 
 
         <script src="/assets/js/bootstrap.min.js"></script>
+        <script src="/assets/js/jquery.min.js"></script>
+
+
+        <script>
+
+            function fetchComplaints() {
+                $.ajax({
+                    url: "http://localhost:3000/user/complaints",
+                    type: "GET",
+                    dataType: "json",
+                    headers: {
+                        "Content-Type": "application/json",
+                        "Accept": "application/json",
+                        "Authorization": "Bearer " + localStorage.getItem("token")
+                    },
+                    success: function (data) {
+                        console.log(data);
+                        var complaints = data;
+                        var html = "";
+                        for (var i = 0; i < complaints.length; i++) {
+                            if(complaints[i].answer == null)
+                                complaints[i].answer = "Cevap Verilmedi";
+                            html += "<tr>";
+                            html += "<th scope='row'>" + complaints[i].id + "</th>";
+                            html += "<td>" + complaints[i].title + "</td>";
+                            html += "<td>" + complaints[i].content + "</td>";
+                            html += "<td>" + complaints[i].answer ?? "Cevap Yok" + "</td>";
+                            html += "<td>" + complaints[i].createdAt + "</td>";
+                            html += "<td>";
+                            html += "<button class='btn btn-primary' data-bs-toggle='modal' data-bs-target='#sikayetDuzenleModal'>Düzenle</button>";
+                            html += "</td>";
+                            html += "</tr>";
+                        }
+                        $("#complaints").html(html);
+                    },
+                    error: function (err) {
+                        console.log(err);
+                    }
+                });
+            }
+            $(document).ready(function () {
+                fetchComplaints();
+            });
+
+
+        </script>
+
 </body>
 
 </html>

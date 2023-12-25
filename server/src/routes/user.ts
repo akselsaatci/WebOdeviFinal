@@ -40,9 +40,11 @@ router.post("/login", async function (req: Request, res: Response) {
     return;
   }
 
-  res.cookie("token", token, { httpOnly: true });
+  res.cookie("token", token, {
+    domain : "localhost",
+  });
 
-  res.status(200).send("OK");
+  res.status(200).json({ token: token });
 });
 
 router.post("/register", async function (req: Request, res: Response) {
@@ -148,9 +150,18 @@ router.post("/profile", async function (req: Request, res: Response) {
     return;
   }
 
-  const dataFromBody = req.body as User;
+  const dataFromBody = req.body as {
+    name: string;
+    email: string;
+    password: string;
+  };
 
-  if (!dataFromBody) {
+  if (
+    !dataFromBody ||
+    !dataFromBody.name ||
+    !dataFromBody.email ||
+    !dataFromBody.password
+  ) {
     res.status(400).send("Bad Request");
     return;
   }
@@ -215,7 +226,6 @@ router.post("/complaints", async function (req: Request, res: Response) {
   if (isNaN(intCompanyId)) {
     return res.status(400).send("Bad Request");
   }
-
 
   const complaint = db.complaint
 

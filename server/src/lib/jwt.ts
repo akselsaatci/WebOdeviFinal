@@ -13,7 +13,7 @@ export function generateAccessToken(user: jwtDto) {
 
 
 export async function verifyToken(req: Request, res: Response): Promise<jwtDto | void> {
-  const token = req.cookies.token;
+  const token = req.headers.authorization?.split(" ")[1];
   
   if (!token) {
     res.status(401).send("Unauthorized");

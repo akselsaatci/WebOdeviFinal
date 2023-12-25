@@ -45,14 +45,7 @@
                 <div class="row mb-3">
                     <label for="adSoyad" class="col-md-4 col-lg-3 col-form-label">Adınız Soyadınız</label>
                     <div class="col-md-8 col-lg-9">
-                        <input name="adSoyad" type="text" class="form-control" id="adSoyad" value="Cesur Akçay">
-                    </div>
-                </div>
-
-                <div class="row mb-3">
-                    <label for="telefonNo" class="col-md-4 col-lg-3 col-form-label">Telefon Numaranız</label>
-                    <div class="col-md-8 col-lg-9">
-                        <input name="telefonNo" type="text" class="form-control" id="telefonNo" value="0123456789">
+                        <input name="name" type="text" class="form-control" id="adSoyad" value="Cesur Akçay">
                     </div>
                 </div>
 
@@ -67,7 +60,7 @@
                 <div class="row mb-3">
                     <label for="sifre" class="col-md-4 col-lg-3 col-form-label">Şifreniz</label>
                     <div class="col-md-8 col-lg-9">
-                        <input name="sifre" type="password" class="form-control" id="sifre" value="*******">
+                        <input name="password" type="password" class="form-control" id="sifre" value="*******">
                     </div>
                 </div>
 
@@ -207,6 +200,70 @@
 
 
     <script src="/assets/js/bootstrap.min.js"></script>
+    <script src="/assets/js/jquery.min.js"></script>
+
+
+    <script>
+        function getProfile() {
+
+            var data = fetch("http://localhost:3000/user/profile", {
+                method: "GET",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Accept": "application/json",
+                    "Authorization": "Bearer " + localStorage.getItem("token")
+                }
+            }).then(response => response.json()).then(data => {
+                console.log(data);
+                document.getElementById("adSoyad").value = data.name;
+                document.getElementById("email").value = data.email;
+            }).catch(err => {
+                console.log(err);
+            });
+        }
+
+        function postProfile() {
+            var name = document.getElementById("adSoyad").value;
+            var email = document.getElementById("email").value;
+            var password = document.getElementById("sifre").value;
+
+            var data = fetch("http://localhost:3000/user/profile", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Accept": "application/json"
+                },
+                body: {
+                    name: name,
+                    email: email,
+                    password: password
+                }
+            }).then(response => response.json()).then(data => {
+                console.log(data);
+            }).catch(err => {
+                console.log(err);
+            });
+        }
+        $(document).ready(function () {
+            $("#profilForm").submit(function (event) {
+                event.preventDefault();
+                var res = postProfile();
+                if (res.status == 200) {
+                    alert("Profiliniz başarıyla güncellendi.");
+
+                }
+                else {
+                    alert("Profiliniz güncellenirken bir hata oluştu.");
+                }
+            });
+            getProfile();
+
+        });
+
+
+
+    </script>
+
 </body>
 
 </html>

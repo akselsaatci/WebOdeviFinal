@@ -163,41 +163,45 @@
 
     <div class="modal modal-lg fade" id="girisYapModal" tabindex="-1" aria-labelledby="girisYapModalLabel"
         aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="girisYapModalLabel">Giriş Yap</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body p-4">
-                    <div class="row justify-content-end">
-                        <div class="col-auto">
-                            <a class="my-auto link-dark custom-link" data-bs-toggle="modal"
-                                data-bs-target="#kayitOlModal">Hesabınız yok mu? Hemen Kayıt Olun!</a>
-                        </div>
+        <form id="userLoginForm" onsubmit="return LoginUser(event);">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="girisYapModalLabel">Giriş Yap</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
-                    <div class="container">
-                        <div class="row">
-                            <div class="mb-3 col-12 col-lg-6">
-                                <label class="form-label">E-mail</label>
-                                <input type="email" class="form-control" placeholder="Email adresinizi giriniz"
-                                    aria-label="Username" aria-describedby="basic-addon1">
+                    <div class="modal-body p-4">
+                        <div class="row justify-content-end">
+                            <div class="col-auto">
+                                <a class="my-auto link-dark custom-link" data-bs-toggle="modal"
+                                    data-bs-target="#kayitOlModal">Hesabınız yok mu? Hemen Kayıt Olun!</a>
                             </div>
-                            <div class="mb-3 col-12 col-lg-6">
-                                <label class="form-label">Şifre</label>
-                                <input type="password" class="form-control" placeholder="Şifrenizi giriniz"
-                                    aria-label="Password" aria-describedby="basic-addon2">
-                            </div>
-                            <div class="row justify-content-between pe-0">
-                                <a href="#" class="link-dark col-auto align-items-center d-flex">Şifremi Unuttum</a>
-                                <a type="button" class="btn btn-primary col-4 " href="/firma">Giriş Yap</a>
+                        </div>
+                        <div class="container">
+                            <div class="row">
+                                <div class="mb-3 col-12 col-lg-6">
+                                    <label class="form-label">E-mail</label>
+                                    <input type="email" id="email" name="email" class="form-control"
+                                        placeholder="Email adresinizi giriniz" aria-label="Username"
+                                        aria-describedby="basic-addon1">
+                                </div>
+                                <div class="mb-3 col-12 col-lg-6">
+                                    <label class="form-label">Şifre</label>
+                                    <input type="password" id="password" name="password" class="form-control"
+                                        placeholder="Şifrenizi giriniz" aria-label="Password"
+                                        aria-describedby="basic-addon2">
+                                </div>
+                                <div class="row justify-content-between pe-0">
+                                    <a href="#" class="link-dark col-auto align-items-center d-flex">Şifremi Unuttum</a>
+                                    <button type="submit" class="btn btn-primary col-4 ">Giriş Yap</button>
 
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
+        </form>
     </div>
 
 
@@ -237,6 +241,11 @@
 
 
     <script src="./assets/js/bootstrap.min.js"></script>
+    <script src="/assets/js/jquery.min.js"></script>
+    <script src="./assets/js/main.js"></script>
+
+
+
 </body>
 
 </html>
