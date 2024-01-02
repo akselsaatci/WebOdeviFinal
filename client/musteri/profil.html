@@ -40,7 +40,7 @@
 
     <div class="container py-5">
         <h4>Cesur Akçay Profili</h4>
-        <form>
+        <form onsubmit="return postProfile(event)">
             <div class="row mb-3">
                 <div class="row mb-3">
                     <label for="adSoyad" class="col-md-4 col-lg-3 col-form-label">Adınız Soyadınız</label>
@@ -222,26 +222,32 @@
             });
         }
 
-        function postProfile() {
-            var name = document.getElementById("adSoyad").value;
-            var email = document.getElementById("email").value;
-            var password = document.getElementById("sifre").value;
+        function postProfile(e) {
+            e.preventDefault();
+            var name = $("#adSoyad").val();
+            var email = $("#email").val();
+            var password = $("#sifre").val();
 
-            var data = fetch("http://localhost:3000/user/profile", {
-                method: "POST",
+            $.ajax({
+                url: "http://localhost:3000/user/profile",
+                type: "POST",
                 headers: {
                     "Content-Type": "application/json",
-                    "Accept": "application/json"
+                    "Accept": "application/json",
+                    "Authorization": "Bearer " + localStorage.getItem("token")
                 },
-                body: {
+                data: JSON.stringify({
                     name: name,
                     email: email,
                     password: password
+                }),
+                success: function (data) {
+                    console.log(data);
+                    location.reload();
+                },
+                error: function (err) {
+                    console.log(err);
                 }
-            }).then(response => response.json()).then(data => {
-                console.log(data);
-            }).catch(err => {
-                console.log(err);
             });
         }
         $(document).ready(function () {

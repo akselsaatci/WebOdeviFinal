@@ -8,6 +8,48 @@ import FirmRegisterRequest from "../data/dtos/firmRegisterRequest";
 import { PostAnswer } from "../data/dtos/postAnswer";
 const router = express.Router();
 
+router.get("/", async function (req: Request, res: Response) {
+  const claim = req.session.user;
+  if (!claim) {
+    return res.redirect("/");
+  }
+
+  const companies = await db.complaint
+    .findMany({
+      include: {
+        company: true,
+        author: true,
+      },
+      where: {
+        companyId: claim.id || 0,
+      },
+    })
+    .catch((err) => {
+      // maybe add logs ?
+      console.log(err);
+      return res.status(500).send("Internal Server Error");
+    });
+
+  return res.render("firma/index", { user: claim, complaints: companies });
+});
+
+router.get("/categories", async function (req: Request, res: Response) {
+  const companies = await db.companyCategory
+    .findMany({
+      select: {
+        id: true,
+        name: true,
+      },
+    })
+    .catch((err) => {
+      // maybe add logs ?
+      console.log(err);
+      return res.status(500).send("Internal Server Error");
+    });
+
+  return res.status(200).json(companies);
+});
+
 router.post("/login", async function (req: Request, res: Response) {
   const dataFromBody = req.body as LoginRequest;
   if (!dataFromBody || !dataFromBody.email || !dataFromBody.password) {
@@ -34,13 +76,7 @@ router.post("/login", async function (req: Request, res: Response) {
     type: "company",
   };
 
-  const token = generateAccessToken(claim);
-  if (!token) {
-    res.status(500).send("Internal Server Error");
-    return;
-  }
-
-  res.cookie("token", token, { httpOnly: true });
+  req.session.user = claim;
 
   res.status(200).send("OK");
 });
@@ -88,21 +124,16 @@ router.post("/register", async function (req: Request, res: Response) {
   res.status(200).send("OK");
 });
 
-router.get("/logout", function (req: Request, res: Response) {
-  res.clearCookie("token");
-  res.status(200).send("OK");
-});
-
 // get profile
 router.get("/profile", async function (req: Request, res: Response) {
-  const claim = await verifyToken(req, res);
+  const claim = req.session.user;
   if (!claim) {
-    res.status(401).send("Unauthorized");
+    res.redirect("/");
     return;
   }
 
   if (!claim.id) {
-    res.status(401).send("Unauthorized");
+    res.redirect("/");
     return;
   }
 
@@ -112,22 +143,27 @@ router.get("/profile", async function (req: Request, res: Response) {
     },
   });
   if (!userDetails) {
-    res.cookie("token", "", { httpOnly: true });
-    return res.status(401).send("Unauthorized");
+    return res.redirect("/");
   }
   userDetails.authorizedPersonPassword = "";
-  return res.status(200).send(userDetails);
+  return res.render("firma/profile", { user: userDetails });
 });
 
 // update profile
 router.post("/profile", async function (req: Request, res: Response) {
-  const claim = await verifyToken(req, res);
+  const claim = req.session.user;
   if (!claim) {
     res.status(401).send("Unauthorized");
     return;
   }
 
-  const dataFromBody = req.body as Company;
+  const dataFromBody = (await req.body) as {
+    firmaSifre: string;
+    firmaAdi: string;
+    firmaYetkiliAdi: string;
+    firmaYetkiliEmail: string;
+    firmaYetkiliTelefon: string;
+  };
 
   if (!dataFromBody) {
     res.status(400).send("Bad Request");
@@ -139,20 +175,39 @@ router.post("/profile", async function (req: Request, res: Response) {
     return;
   }
 
-  const userDetails = await db.company.update({
-    where: {
-      id: claim.id,
-    },
-    data: {
-      name: dataFromBody.name,
-      authorizedPersonEmail: dataFromBody.authorizedPersonEmail,
-      authorizedPersonPhone: dataFromBody.authorizedPersonPhone,
-      authorizedPersonName: dataFromBody.authorizedPersonName,
-      authorizedPersonPassword: dataFromBody.authorizedPersonPassword,
-    },
-  });
+  // null check for datafrombody
+  if (
+    !dataFromBody.firmaSifre ||
+    !dataFromBody.firmaAdi ||
+    !dataFromBody.firmaYetkiliAdi ||
+    !dataFromBody.firmaYetkiliEmail ||
+    !dataFromBody.firmaYetkiliTelefon
+  ) {
+    res.status(400).send("Bad Request");
+    return;
+  }
 
-  return res.status(200).json(userDetails);
+  const userDetails = await db.company
+    .update({
+      where: {
+        id: claim.id,
+      },
+      data: {
+        name: dataFromBody.firmaAdi,
+        authorizedPersonEmail: dataFromBody.firmaYetkiliEmail,
+        authorizedPersonPhone: dataFromBody.firmaYetkiliTelefon,
+        authorizedPersonName: dataFromBody.firmaYetkiliAdi,
+        authorizedPersonPassword: dataFromBody.firmaSifre,
+      },
+    })
+    .catch((err) => {
+      // maybe add logs ?
+      console.log(err);
+      return res.status(500).send("Internal Server Error");
+    });
+  console.log(userDetails);
+  console.log(dataFromBody);
+  return res.redirect("/company/profile");
 });
 
 // get all complaints
@@ -173,22 +228,25 @@ router.get("/complaints", async function (req: Request, res: Response) {
 });
 
 // post a answer to a firm
-router.post("/complaints", async function (req: Request, res: Response) {
-  const claim = await verifyToken(req, res);
+router.post("/complaint/:id", async function (req: Request, res: Response) {
+  const { id } = req.params;
+
+  const claim = req.session.user;
   if (!claim) {
-    return res.status(401).send("Unauthorized");
+    return res.redirect("/");
   }
   const dataFromBody = req.body as PostAnswer;
   if (!dataFromBody) {
     return res.status(400).send("Bad Request");
   }
   if (!claim.id) {
-    return res.status(401).send("Unauthorized");
+    return res.redirect("/");
+
   }
 
   const complaint = db.complaint
     .update({
-      where: { id: dataFromBody.complaintId },
+      where: { id: parseInt(id) },
       data: {
         answer: dataFromBody.content,
         answeredAt: new Date(),
@@ -206,5 +264,17 @@ router.post("/complaints", async function (req: Request, res: Response) {
 // get complaints made by user
 // maybe implement this later
 router.get("/complaints/:id", function (req: Request, res: Response) {});
+
+router.get("/all", function (req: Request, res: Response) {
+  db.company
+    .findMany({})
+    .then((data) => {
+      return res.json(data);
+    })
+    .catch((err) => {
+      console.log(err);
+      return res.status(500).send("Internal Server Error");
+    });
+});
 
 module.exports = router;

@@ -239,89 +239,63 @@
         <div class="modal modal-lg fade" id="sikayetOlusturModal" tabindex="-1"
             aria-labelledby="sikayetOlusturModalLabel" aria-hidden="true">
             <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="sikayetOlusturModalLabel">Şikayet Ekle</h1>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <form onsubmit="return postComplaint(event)">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="sikayetOlusturModalLabel">Şikayet Ekle</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <form>
+                                <div class="mb-3">
+                                    <label for="firmaId" class="form-label fw-bold">Firma Seçimi:</label>
+                                    <select class="form-control" id="c_firmId">
+
+                                    </select>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="firmaSecimi" class="form-label fw-bold">Başlık :</label>
+                                    <input class="form-control" id="c_title">
+
+                                </div>
+
+
+
+                                <div class="mb-3">
+                                    <label for="sikayetMetni" class="form-label fw-bold">Şikayetiniz:</label>
+                                    <textarea class="form-control" id="c_content" rows="3"
+                                        placeholder="Şikayetinizi buraya yazın"></textarea>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">İptal et</button>
+                            <button type="submit" class="btn btn-primary">Oluştur</button>
+                        </div>
                     </div>
-                    <div class="modal-body">
-                        <form>
-                            <div class="mb-3">
-                                <label for="firmaSecimi" class="form-label fw-bold">Firma Seçimi:</label>
-                                <select class="form-control" id="firmaSecimi">
-                                    <option value="firma1">Bosch</option>
-                                    <option value="firma2">LG</option>
-                                </select>
-                            </div>
-                            <div class="mb-3">
-                                <label for="urunSecimi" class="form-label fw-bold">Ürün Seçimi:</label>
-                                <select class="form-control" id="urunSecimi">
-                                    <option value="buzdolabi">Buzdolabı</option>
-                                    <option value="televizyon">Televizyon</option>
-                                </select>
-                            </div>
-                            <div class="mb-3">
-                                <label for="sikayetMetni" class="form-label fw-bold">Şikayetiniz:</label>
-                                <textarea class="form-control" id="sikayetMetni" rows="3"
-                                    placeholder="Şikayetinizi buraya yazın"></textarea>
-                            </div>
-                        </form>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">İptal et</button>
-                        <button type="button" class="btn btn-primary">Oluştur</button>
-                    </div>
-                </div>
+                </form>
             </div>
         </div>
 
 
         <script src="/assets/js/bootstrap.min.js"></script>
         <script src="/assets/js/jquery.min.js"></script>
+        <script src="/assets/js/main.js"></script>
 
 
         <script>
-
-            function fetchComplaints() {
-                $.ajax({
-                    url: "http://localhost:3000/user/complaints",
-                    type: "GET",
-                    dataType: "json",
-                    headers: {
-                        "Content-Type": "application/json",
-                        "Accept": "application/json",
-                        "Authorization": "Bearer " + localStorage.getItem("token")
-                    },
-                    success: function (data) {
-                        console.log(data);
-                        var complaints = data;
-                        var html = "";
-                        for (var i = 0; i < complaints.length; i++) {
-                            if(complaints[i].answer == null)
-                                complaints[i].answer = "Cevap Verilmedi";
-                            html += "<tr>";
-                            html += "<th scope='row'>" + complaints[i].id + "</th>";
-                            html += "<td>" + complaints[i].title + "</td>";
-                            html += "<td>" + complaints[i].content + "</td>";
-                            html += "<td>" + complaints[i].answer ?? "Cevap Yok" + "</td>";
-                            html += "<td>" + complaints[i].createdAt + "</td>";
-                            html += "<td>";
-                            html += "<button class='btn btn-primary' data-bs-toggle='modal' data-bs-target='#sikayetDuzenleModal'>Düzenle</button>";
-                            html += "</td>";
-                            html += "</tr>";
-                        }
-                        $("#complaints").html(html);
-                    },
-                    error: function (err) {
-                        console.log(err);
-                    }
-                });
-            }
+          
             $(document).ready(function () {
                 fetchComplaints();
+                const firmalar = getAllCompanies(function (data) {
+                    var firmaStr = "";
+                    for (var i = 0; i < data.length; i++) {
+                        firmaStr += "<option value='" + data[i].id + "'>" + data[i].name + "</option>";
+                    }
+                    $('#c_firmId').html(firmaStr);
+                });
             });
-
-
         </script>
 
 </body>

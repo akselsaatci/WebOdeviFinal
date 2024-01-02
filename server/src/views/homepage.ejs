@@ -1,0 +1,347 @@
+<div class="container">
+    <div class="my-auto">
+        <div class="row pt-5">
+            <div class="col-md-6 col-12 order-2 order-md-0" style="padding-top: 10%;">
+                <h1 class="mt-5">
+                    Sizin Şikayetiniz <br>Bizim Çözümümüz Var
+                </h1>
+
+                <div class="d-flex gap-4">
+                    <div class="row">
+                        <div class="col-12">
+                            <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#kayitOlModal">Kayıt
+                                Ol</button>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#girisYapModal">Giriş
+                                Yap</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 order-0 order-md-2 d-lg-block ">
+                <div class="img-fluid">
+                    <img class="img-fluid" src="./assets/img/banner.png" alt="hero">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="bg-body-tertiary mt-5 ">
+    <div class="container py-5">
+        <h3 class="text-center py-4">Çok Konuşulanlar</h3>
+        <div id="cok_konusulanlar_slider" class="carousel slide my-3">
+            <div class="carousel-indicators">
+                <button type="button" data-bs-target="#cok_konusulanlar_slider" data-bs-slide-to="0" class="active"
+                    aria-current="true" aria-label="Slide 1"></button>
+                <button type="button" data-bs-target="#cok_konusulanlar_slider" data-bs-slide-to="1"
+                    aria-label="Slide 2"></button>
+                <button type="button" data-bs-target="#cok_konusulanlar_slider" data-bs-slide-to="2"
+                    aria-label="Slide 3"></button>
+
+
+            </div>
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img src="/assets/img/sikayet1.png" class="d-block mx-auto h-auto" alt="sikayet1.png">
+                </div>
+                <div class="carousel-item">
+                    <img src="/assets/img/sikayet2.png" class="d-block mx-auto h-auto" alt="sikayet2.png">
+                </div>
+                <div class="carousel-item">
+                    <img src="/assets/img/sikayet3.png" class="d-block mx-auto h-auto" alt="sikayet3.png">
+                </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#cok_konusulanlar_slider"
+                data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#cok_konusulanlar_slider"
+                data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
+
+    </div>
+</div>
+<div class="container">
+    <div class="row py-5">
+        <div class="col-md-6 col-12">
+            <div class="pt-5">
+
+                <h4 class="text-muted">Şikayet Sepeti Nasıl Çalışır?</h4>
+                <p class="text-muted">
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos tenetur debitis nulla est
+                    mollitia
+                    delectus in sapiente dolores perferendis error nemo voluptate laudantium, consequuntur
+                    aspernatur
+                    dolore quisquam pariatur saepe officia impedit porro? Deserunt a quam voluptatum pariatur quia
+                    neque
+                    autem nam magnam minima, dolor officia corrupti excepturi sint libero hic!
+                </p>
+            </div>
+        </div>
+        <div class="col-md-6 col-12">
+            <iframe class="youtube-video" width="560" height="315"
+                src="https://www.youtube.com/embed/dQw4w9WgXcQ?si=8fur6IWJeiMQlVTN" title="YouTube video player"
+                frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowfullscreen></iframe>
+        </div>
+    </div>
+</div>
+
+
+<div class="my-5 py-5 text-white" style="background-color: #ff9708;">
+    <div class="container py-5 text-center">
+        <h6 class="h2">Bir numaralı önceliğimiz, Tüketici Memnuniyeti</h6>
+        <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa nemo tempora, suscipit laudantium tempore
+            officia cum quasi eligendi error magnam, quis dolor incidunt, expedita adipisci.
+        </p>
+        <button class="btn btn-light">Bize Katılın</button>
+    </div>
+</div>
+
+
+
+
+<div class="modal modal-lg fade" id="girisYapModal" tabindex="-1" aria-labelledby="girisYapModalLabel"
+    aria-hidden="true">
+    <form id="userLoginForm" onsubmit="return LoginUser(event);">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="girisYapModalLabel">Müşteri Olarak Giriş Yap</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body p-4">
+                    <div class="row justify-content-end">
+                        <div class="col-auto">
+                            <a class="my-auto link-dark custom-link" data-bs-toggle="modal"
+                                data-bs-target="#kayitOlModal">Hesabınız yok mu? Kullanıcı Olarak Hemen Kayıt
+                                Olun!</a>
+                        </div>
+                        <div class="col-auto">
+                            <a class="my-auto link-dark custom-link" data-bs-toggle="modal"
+                                data-bs-target="#kayitOlFirmaModal">Hesabınız yok mu? Firma Olarak Hemen Kayıt
+                                Olun!</a>
+                        </div>
+                    </div>
+                    <div class="container">
+                        <div class="row">
+                            <div class="mb-3 col-12 col-lg-6">
+                                <label class="form-label">E-mail</label>
+                                <input required type="email" id="email" name="email" class="form-control"
+                                    placeholder="Email adresinizi giriniz" aria-label="Username"
+                                    aria-describedby="basic-addon1">
+                            </div>
+                            <div class="mb-3 col-12 col-lg-6">
+                                <label class="form-label">Şifre</label>
+                                <input required type="password" id="password" name="password" class="form-control"
+                                    placeholder="Şifrenizi giriniz" aria-label="Password"
+                                    aria-describedby="basic-addon2">
+                            </div>
+                            <div class="row justify-content-between pe-0">
+                                <a href="#" class="link-dark col-auto align-items-center d-flex">Şifremi Unuttum</a>
+                                <button type="submit" class="btn btn-primary col-4 ">Giriş Yap</button>
+                            </div>
+                            <a class="link-dark col-auto align-items-center d-flex custom-link" data-bs-toggle="modal"
+                                data-bs-target="#firmaGirisModal">Firma olarak giriş yap</a>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+
+
+<div class="modal modal-lg fade" id="firmaGirisModal" tabindex="-1" aria-labelledby="girisYapModalLabel"
+    aria-hidden="true">
+    <form id="companyLoginForm" onsubmit="return LoginCompany(event);">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="girisYapModalLabel">Firma Olarak Giriş Yap</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body p-4">
+                    <div class="row justify-content-end">
+                        <div class="col-auto">
+                            <a class="my-auto link-dark custom-link" data-bs-toggle="modal"
+                                data-bs-target="#kayitOlModal">Hesabınız yok mu? Firma Olarak Hemen Kayıt Olun!</a>
+                        </div>
+                        <div class="col-auto">
+                            <a class="my-auto link-dark custom-link" data-bs-toggle="modal"
+                                data-bs-target="#kayitOlFirmaModal">Hesabınız yok mu? Firma Olarak Hemen Kayıt
+                                Olun!</a>
+                        </div>
+                    </div>
+                    <div class="container">
+                        <div class="row">
+                            <div class="mb-3 col-12 col-lg-6">
+                                <label class="form-label">E-mail</label>
+                                <input required type="email" id="firma_email" name="email" class="form-control"
+                                    placeholder="Email adresinizi giriniz" aria-label="Username"
+                                    aria-describedby="basic-addon1">
+                            </div>
+                            <div class="mb-3 col-12 col-lg-6">
+                                <label class="form-label">Şifre</label>
+                                <input required type="password" id="firma_password" name="password" class="form-control"
+                                    placeholder="Şifrenizi giriniz" aria-label="Password"
+                                    aria-describedby="basic-addon2">
+                            </div>
+                            <div class="row justify-content-between pe-0">
+                                <a href="#" class="link-dark col-auto align-items-center d-flex">Şifremi Unuttum</a>
+                                <button type="submit" class="btn btn-primary col-4 ">Giriş Yap</button>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+
+
+<div class="modal modal-lg fade" id="kayitOlModal" tabindex="-1" aria-labelledby="kayitOlModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="kayitOlModalLabel">Kayıt Ol</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body p-4">
+                <form onsubmit="return RegisterUser(event)">
+                    <div class="container">
+                        <div class="row">
+                            <div class="mb-3 col-12 col-lg-6">
+                                <label class="form-label">T.C</label>
+                                <input required type="text" id="ur_tc" class="form-control"
+                                    placeholder="T.C kimlik numaranızı giriniz" aria-label="Username"
+                                    aria-describedby="basic-addon1">
+                            </div>
+                            <div class="mb-3 col-12 col-lg-6">
+                                <label class="form-label">Ad Soyad</label>
+                                <input required type="text" id="ur_name" class="form-control"
+                                    placeholder="Adınızı soyadınızı giriniz" aria-label="Username"
+                                    aria-describedby="basic-addon1">
+                            </div>
+                            <div class="mb-3 col-12 col-lg-6">
+                                <label class="form-label">E-mail</label>
+                                <input required type="email" id="ur_email" class="form-control"
+                                    placeholder="Email adresinizi giriniz" aria-label="Username"
+                                    aria-describedby="basic-addon1">
+                            </div>
+                            <div class="mb-3 col-12 col-lg-6">
+                                <label class="form-label">Şifre</label>
+                                <input required type="password" class="form-control" placeholder="Şifrenizi giriniz"
+                                    aria-label="Password" id="ur_password" aria-describedby="basic-addon2">
+                            </div>
+                            <div class="row justify-content-end pe-0">
+                                <button type="submit" class="btn btn-primary col-4 ">Kayıt Ol</button>
+
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal modal-lg fade" id="kayitOlFirmaModal" tabindex="-1" aria-labelledby="kayitOlModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="kayitOlModalLabel">Kayıt Ol</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body p-4">
+                <form onsubmit="return RegisterCompany(event)">
+                    <div class="container">
+                        <div class="row">
+                            <div class="mb-3 col-12 col-lg-6">
+                                <label class="form-label">Ad soyad</label>
+                                <input required id="cr_authorizedPersonName" type="text" class="form-control"
+                                    placeholder="Ad soyad" aria-label="Username" aria-describedby="basic-addon1">
+                            </div>
+                            <div class="mb-3 col-12 col-lg-6">
+                                <label class="form-label">Firma Adı</label>
+                                <input required id="cr_name" type="text" class="form-control" placeholder="Firma adı"
+                                    aria-label="Username" aria-describedby="basic-addon1">
+                            </div>
+                            <div class="mb-3 col-12 col-lg-6">
+                                <label class="form-label">E-mail</label>
+                                <input required id="cr_authorizedPersonEmail" type="email" class="form-control"
+                                    placeholder="Email adresinizi giriniz" aria-label="Username"
+                                    aria-describedby="basic-addon1">
+                            </div>
+                            <div class="mb-3 col-12 col-lg-6">
+                                <label class="form-label">Telefon Numarası</label>
+                                <input required id="cr_authorizedPersonPhone" type="text" class="form-control"
+                                    placeholder="Telefon numaranızı giriniz" aria-label="Username"
+                                    aria-describedby="basic-addon1">
+                            </div>
+                            <div class="col-lg-6">
+                                <label class="form-label">Kategorisi</label>
+                                <select required id="cr_category" class="form-select"
+                                    aria-label="Default select example">
+
+                                </select>
+                            </div>
+                            <div class="mb-3 col-12 col-lg-6">
+                                <label class="form-label">Şifre</label>
+                                <input required id="cr_authorizedPersonPassword" type="password" class="form-control"
+                                    placeholder="Şifrenizi giriniz" aria-label="Password"
+                                    aria-describedby="basic-addon2">
+                            </div>
+                            <div class="row justify-content-end pe-0">
+                                <button type="submit" class="btn btn-primary col-4 ">Kayıt Ol</button>
+
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script src="/assets/js/bootstrap.min.js"></script>
+<script src="/assets/js/jquery.min.js"></script>
+<script src="/assets/js/main.js"></script>
+
+<script>
+    // document onload
+    $(document).ready(async function () {
+        const categories = getAllCategories(function (data) {
+            console.log(categories);
+            var select = $("#cr_category");
+            $.each(data, function (key, value) {
+                console.log(value);
+                select.append('<option value=' + value.id + '>' + value.name + '</option>');
+            });
+        });
+    });
+
+
+</script>
+
+
+
+</body>
+
+</html>

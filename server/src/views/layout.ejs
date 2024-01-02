@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Şikayet Sepeti</title>
+    <link rel="stylesheet" href="/assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/assets/css/styles.css">
+    <link rel="stylesheet" href="/assets/css/datatables.min.css">
+</head>
+
+<body>
+    <% if (!user) { %>
+        <nav class="navbar navbar-expand-lg bg-body-tertiary">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="/">Şikayet Sepeti</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                    <div class="navbar-nav">
+                        <a class="nav-link active" aria-current="page" href="/">Ana Sayfa</a>
+                        <a class="nav-link" href="/sikayetler">Şikayetler</a>
+                        <a class="nav-link d-block d-md-none" data-bs-toggle="modal"
+                            data-bs-target="#girisYapModal">Giriş
+                            Yap / Kayıt Ol</a>
+                        <a class="nav-link d-block d-md-none" data-bs-toggle="modal"
+                            data-bs-target="#sikayetOlusturModal">Şikayet Oluştur</a>
+
+                    </div>
+                </div>
+
+
+                <form class="d-none d-md-flex" role="search">
+                    <div class="align-content-center d-flex me-3">
+                        <a class="my-auto link-dark custom-link" data-bs-toggle="modal"
+                            data-bs-target="#girisYapModal">Giriş Yap / Kayıt Ol</a>
+                    </div>
+                    <!-- <button class="btn btn-outline-warning" type="button" data-bs-toggle="modal"
+                        data-bs-target="#sikayetOlusturModal">Şikayet Oluştur</button> -->
+                </form>
+            </div>
+        </nav>
+
+        <% } %>
+            <% if (user && user.tc) { %>
+
+                <nav class="navbar navbar-expand-lg bg-body-tertiary">
+                    <div class="container-fluid">
+                        <a class="navbar-brand" href="/">Şikayet Sepeti</a>
+                        <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup"
+                            aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                            <div class="navbar-nav">
+                                <a class="nav-link active" aria-current="page" href="/">Ana Sayfa</a>
+                                <a class="nav-link" href="#">Şikayetler</a>
+                                <a class="nav-link" href="#">Son Şikayetler</a>
+                                <a class="nav-link" href="/user/">Şikayetlerim</a>
+                                <a class="nav-link d-block d-md-none" data-bs-toggle="modal"
+                                    data-bs-target="#sikayetOlusturModal">Şikayet Oluştur</a>
+
+                            </div>
+                        </div>
+
+
+                        <form class="d-none d-md-flex" role="search">
+                            <div class="align-content-center d-flex me-3">
+                                <a class="my-auto link-dark custom-link" href="/user/profile"> Profil</a>
+                            </div>
+                            <div class="align-content-center d-flex me-3">
+                                <a class="my-auto link-dark custom-link" href="/user/logout"> Çıkış Yap</a>
+                            </div>
+
+                            <button class="btn btn-outline-warning" type="button" data-bs-toggle="modal"
+                                data-bs-target="#sikayetOlusturModal">Şikayet Oluştur</button>
+                        </form>
+                    </div>
+                </nav>
+                <% } %>
+
+
+                    <% if (user && user.id) { %>
+
+                        <nav class="navbar navbar-expand-lg bg-body-tertiary">
+                            <div class="container-fluid">
+                                <a class="navbar-brand" href="/">Şikayet Sepeti</a>
+                                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup"
+                                    aria-expanded="false" aria-label="Toggle navigation">
+                                    <span class="navbar-toggler-icon"></span>
+                                </button>
+                                <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                                    <div class="navbar-nav">
+                                        <a class="nav-link active" aria-current="page" href="/">Ana Sayfa</a>
+                                        <a class="nav-link" href="#">Şikayetler</a>
+                                        <a class="nav-link" href="#">Son Şikayetler</a>
+                                        <a class="nav-link" href="/company/">Şikayetlerim</a>
+                                        <!-- <a class="nav-link d-block d-md-none" data-bs-toggle="modal"
+                                        data-bs-target="#sikayetOlusturModal">Şikayet Oluştur</a> -->
+
+                                    </div>
+                                </div>
+
+
+                                <form class="d-none d-md-flex" role="search">
+                                    <div class="align-content-center d-flex me-3">
+                                        <a class="my-auto link-dark custom-link" href="/company/profile"> Profil</a>
+                                    </div>
+                                    <div class="align-content-center d-flex me-3">
+                                        <a class="my-auto link-dark custom-link" href="/user/logout"> Çıkış Yap</a>
+                                    </div>
+                                </form>
+                            </div>
+                        </nav>
+                        <% } %>
+
+
+                            <script src="/assets/js/bootstrap.min.js"></script>
+                            <script src="/assets/js/jquery.min.js"></script>
+                            <script src="/assets/js/main.js"></script>
+                            <script src="/assets/js/datatables.min.js"></script>
+
+                            <%- body %>
+
+
+
+                                <div class="container">
+                                    <footer
+                                        class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
+                                        <p class="col-md-4 mb-0 text-body-secondary">© 2023 Şikayet Sepeti, LTD ŞTİ</p>
+                                        <ul class="nav col-md-4 justify-content-end">
+                                            <li class="nav-item"><a href="#"
+                                                    class="nav-link px-2 text-body-secondary">Ana
+                                                    Sayfa</a>
+                                            </li>
+                                            <li class="nav-item"><a href="#"
+                                                    class="nav-link px-2 text-body-secondary">Şikayetler</a>
+                                            </li>
+                                        </ul>
+                                    </footer>
+                                </div>
+
+                                <div class="modal modal-lg fade" id="sikayetOlusturModal" tabindex="-1"
+                                    aria-labelledby="sikayetOlusturModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <form onsubmit="return postComplaint(event)">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h1 class="modal-title fs-5" id="sikayetOlusturModalLabel">Şikayet
+                                                        Ekle</h1>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                        aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <form>
+                                                        <div class="mb-3">
+                                                            <label for="firmaId" class="form-label fw-bold">Firma
+                                                                Seçimi:</label>
+                                                            <select class="form-control" id="c_firmId">
+
+
+                                                            </select>
+                                                        </div>
+
+                                                        <div class="mb-3">
+                                                            <label for="firmaSecimi" class="form-label fw-bold">Başlık
+                                                                :</label>
+                                                            <input class="form-control" id="c_title">
+
+                                                        </div>
+
+
+
+                                                        <div class="mb-3">
+                                                            <label for="sikayetMetni"
+                                                                class="form-label fw-bold">Şikayetiniz:</label>
+                                                            <textarea class="form-control" id="c_content" rows="3"
+                                                                placeholder="Şikayetinizi buraya yazın"></textarea>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary"
+                                                        data-bs-dismiss="modal">İptal
+                                                        et</button>
+                                                    <button type="submit" class="btn btn-primary">Oluştur</button>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+
+                                <script>
+                                    $(document).ready(function () {
+                                        getAllCompanies(function (companies) {
+                                            let select = $("#c_firmId");
+                                            for (let i = 0; i < companies.length; i++) {
+                                                select.append(`<option value="${companies[i].id}">${companies[i].name}</option>`);
+                                            }
+                                        });
+                                    });
+                                    let table = new DataTable('table');
+                                </script>
+</body>

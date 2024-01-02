@@ -1,0 +1,128 @@
+<div class="container py-5">
+    <div class="row justify-content-end my-3">
+        <div class="col-auto">
+            
+        </div>
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Başlık</th>
+                        <th scope="col">Firma Adı</th>
+                        <th scope="col">İçerik</th>
+                        <th scope="col">Cevap</th>
+                        <th scope="col">Şikayet Tarihi</th>
+                        <th scope="col" style="width: 50px;"></th>
+                    </tr>
+                </thead>
+                <tbody id="complaints">
+                    <% for (let i=0; i < complaints.length; i++) { %>
+                        <tr>
+                            <td>
+                                <%= complaints[i].id %>
+                            </td>
+                            <td>
+                                <%= complaints[i].title %>
+                            </td>
+                            <td>
+                                <%= complaints[i].company.name %>
+                            </td>
+                            <td>
+                                <%= complaints[i].content %>
+                            </td>
+                            <td>
+                                <%= complaints[i].answer %>
+                            </td>
+                            <td>
+                                <%= complaints[i].createdAt %>
+                            </td>
+                            <td>
+                                <button class="btn btn-primary sikayetDuzenleBtn" data-bs-toggle="modal"
+                                    data-bs-target="#sikayetDuzenleModal"
+                                    id="s_<%= complaints[i].id %>">Düzenle</button>
+                            </td>
+                        </tr>
+                        <% } %>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+
+
+    <div class="modal modal-lg fade" id="sikayetDuzenleModal" tabindex="-1" aria-labelledby="sikayetDuzenleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="sikayetDuzenleModalLabel">Şikayeti Düzenle</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p id="u_firmName"> <span class="fw-bold">Firma Adı : </span> Bosch</p>
+                    <p id="u_date"><span class="fw-bold">Şikayet Tarihi : </span> 19/12/2023</p>
+                    <div class="mb-3">
+                        <label for="exampleFormControlTextarea1" class="form-label fw-bold">Şikayetiniz</label>
+                        <textarea class="form-control" id="u_content" rows="3"></textarea>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">İptal et</button>
+                    <button type="button" class="btn btn-danger" id="sil_">Şikayeti Sil</button>
+                    <button type="button" class="btn btn-primary" id="kaydet_">Değişiklikleri Kaydet</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+
+        $('.sikayetDuzenleBtn').on('click', function () {
+            var id = $(this).attr('id').split('_')[1];
+            $.ajax({
+                url: '/complaint/complaints/' + id,
+                type: 'GET',
+                success: function (data) {
+                    console.log(data);
+                    $('#u_firmName').text('Firma Adı : ' + data[0].company.name);
+                    $('#u_date').text('Şikayet Tarihi : ' + data[0].createdAt);
+                    $('#u_content').val(data[0].content);
+                    $('#sil_').attr('id', 'sil_' + data[0].id);
+                    $('#kaydet_').attr('id', 'kaydet_' + data[0].id);
+                }
+            });
+        });
+        $('#sil_').on('click', function () {
+            var id = $(this).attr('id').split('_')[1];
+            $.ajax({
+                url: '/complaint/complaints/' + id,
+                type: 'DELETE',
+                success: function (data) {
+                    console.log(data);
+                    $('#s_' + id).parent().parent().remove();
+                    $('#sikayetDuzenleModal').modal('hide');
+                    location.reload();
+                }
+            });
+        });
+        $('#kaydet_').on('click', function () {
+            var id = $(this).attr('id').split('_')[1];
+            var content = $('#u_content').val();
+            $.ajax({
+                url: '/complaint/complaints/' + id,
+                type: 'PUT',
+                data: {
+                    content: content
+                },
+                success: function (data) {
+                    console.log(data);
+                    $('#s_' + id).parent().parent().find('#u_content').text(content);
+                    $('#sikayetDuzenleModal').modal('hide');
+                    location.reload();
+                }
+            });
+        });
+
+
+    </script>

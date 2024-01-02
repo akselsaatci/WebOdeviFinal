@@ -6,6 +6,7 @@ import { generateAccessToken, verifyToken } from "../lib/jwt";
 import jwtDto from "../data/dtos/jwtDto";
 import { User } from "@prisma/client";
 import PostComplaint from "../data/dtos/postComplaint";
+import { showComplaintsByUser } from "../controllers/musteriController";
 const router = express.Router();
 
 router.post("/login", async function (req: Request, res: Response) {
@@ -34,17 +35,10 @@ router.post("/login", async function (req: Request, res: Response) {
     type: "user",
   };
 
-  const token = generateAccessToken(claim);
-  if (!token) {
-    res.status(500).send("Internal Server Error");
-    return;
-  }
+  req.session.user = claim;
 
-  res.cookie("token", token, {
-    domain : "localhost",
-  });
-
-  res.status(200).json({ token: token });
+  res.status(200);
+  res.send("OK");
 });
 
 router.post("/register", async function (req: Request, res: Response) {
@@ -100,33 +94,31 @@ router.post("/register", async function (req: Request, res: Response) {
     type: "user",
   };
 
-  const token = generateAccessToken(claim);
-  if (!token) {
-    res.status(500).send("Internal Server Error");
-    return;
-  }
-
-  res.cookie("token", token, { httpOnly: true });
+  req.session.user = claim;
 
   res.status(200).send("OK");
 });
 
 router.get("/logout", function (req: Request, res: Response) {
-  res.clearCookie("token");
-  res.status(200).send("OK");
+  req.session.destroy((err) => {
+    if (err) {
+      console.log(err);
+      return res.status(500).send("Internal Server Error");
+    }
+  });
+  res.redirect("/");
 });
 
 // get profile
 router.get("/profile", async function (req: Request, res: Response) {
-  const claim = await verifyToken(req, res);
+  const claim = req.session.user;
   if (!claim) {
-    res.status(401).send("Unauthorized");
+    res.redirect("/");
     return;
   }
 
   if (!claim.tc) {
-    res.status(401).send("Unauthorized");
-    return;
+    return res.redirect("/");
   }
 
   const userDetails = await db.user.findFirst({
@@ -135,16 +127,15 @@ router.get("/profile", async function (req: Request, res: Response) {
     },
   });
   if (!userDetails) {
-    res.cookie("token", "", { httpOnly: true });
-    return res.status(401).send("Unauthorized");
+    return res.redirect("/");
   }
   userDetails.password = "";
-  return res.status(200).send(userDetails);
+  return res.render("musteri/profile", { user: userDetails });
 });
 
 // update profile
 router.post("/profile", async function (req: Request, res: Response) {
-  const claim = await verifyToken(req, res);
+  const claim = req.session.user;
   if (!claim) {
     res.status(401).send("Unauthorized");
     return;
@@ -167,7 +158,7 @@ router.post("/profile", async function (req: Request, res: Response) {
   }
 
   if (!claim.tc) {
-    res.status(401).send("Unauthorized");
+    res.redirect("/");
     return;
   }
 
@@ -182,10 +173,13 @@ router.post("/profile", async function (req: Request, res: Response) {
     },
   });
 
-  return res.status(200).json(userDetails);
+  return res.redirect("/user/profile");
 });
 
 // get all complaints
+
+router.get("/", showComplaintsByUser);
+
 router.get("/complaints", async function (req: Request, res: Response) {
   const claim = await verifyToken(req, res);
   console.log(claim);
@@ -207,7 +201,7 @@ router.get("/complaints", async function (req: Request, res: Response) {
 
 // post a complaint to a firm
 router.post("/complaints", async function (req: Request, res: Response) {
-  const claim = await verifyToken(req, res);
+  const claim = req.session.user;
   if (!claim) {
     return res.status(401).send("Unauthorized");
   }

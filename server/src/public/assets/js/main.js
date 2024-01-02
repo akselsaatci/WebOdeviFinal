@@ -7,16 +7,14 @@ function LoginUser(e) {
     password: password,
   };
   $.ajax({
-    url: "http://localhost:3000/user/login",
+    url: "/user/login",
     type: "POST",
     data: JSON.stringify(data),
     contentType: "application/json",
     success: function (response, status, xhr) {
       if (xhr.status === 200) {
-        const token = response.token;
-        debugger;
-        localStorage.setItem("token", token);
-        window.location.href = "/musteri";
+        alert("Giriş başarılı");
+        window.location.href = "/";
       } else if (xhr.status === 401) {
         alert("Yanlış bilgi girdiniz");
       } else {
@@ -46,13 +44,13 @@ function RegisterUser(e) {
     name: name,
   };
   $.ajax({
-    url: "http://localhost:3000/user/register",
+    url: "/user/register",
     type: "POST",
     data: JSON.stringify(data),
     contentType: "application/json",
     success: function (response, status, xhr) {
       if (xhr.status === 200) {
-        alert("Kayıt başarılı. Lütfen giriş yapınız.");
+        alert("Kayıt başarılı.");
         window.location.href = "/";
       } else if (xhr.status === 401) {
         alert("Bu email veya tc zaten kayıtlı");
@@ -87,7 +85,7 @@ function RegisterCompany(e) {
     name: name,
   };
   $.ajax({
-    url: "http://localhost:3000/company/register",
+    url: "/company/register",
     type: "POST",
     data: JSON.stringify(data),
     contentType: "application/json",
@@ -120,15 +118,14 @@ function LoginCompany(e) {
     password: password,
   };
   $.ajax({
-    url: "http://localhost:3000/company/login",
+    url: "/company/login",
     type: "POST",
     data: JSON.stringify(data),
     contentType: "application/json",
     success: function (response, status, xhr) {
       if (xhr.status === 200) {
-        const token = response.token;
-        localStorage.setItem("token", token);
-        window.location.href = "/firma";
+        alert("Giriş başarılı");
+        window.location.href = "/company";
       } else if (xhr.status === 401) {
         alert("Yanlış bilgi girdiniz");
       } else {
@@ -147,7 +144,7 @@ function LoginCompany(e) {
 
 function getAllCompanies(callback) {
   $.ajax({
-    url: "http://localhost:3000/company/",
+    url: "/company/all",
     type: "GET",
     success: function (response, status, xhr) {
       if (xhr.status === 200) {
@@ -170,7 +167,7 @@ function getAllCompanies(callback) {
 
 function getAllCategories(callback) {
   $.ajax({
-    url: "http://localhost:3000/company/categories/",
+    url: "/company/categories/",
     type: "GET",
     success: function (response, status, xhr) {
       if (xhr.status === 200) {
@@ -203,7 +200,7 @@ function postComplaint(e) {
     firmId: firmId,
   };
   $.ajax({
-    url: "http://localhost:3000/user/complaints",
+    url: "/user/complaints",
     type: "POST",
     data: JSON.stringify(data),
     contentType: "application/json",
@@ -216,7 +213,7 @@ function postComplaint(e) {
     success: function (response, status, xhr) {
       if (xhr.status === 200) {
         alert("Şikayetiniz başarıyla kaydedildi");
-        window.location.href = "/musteri/sikayetlerim.html";
+        window.location.href = "/user";
       } else if (xhr.status === 401) {
         alert("Lütfen giriş yapınız");
         location.href = "/";

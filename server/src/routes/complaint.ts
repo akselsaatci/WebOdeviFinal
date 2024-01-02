@@ -23,7 +23,56 @@ router.get("/", function (req: Request, res: Response) {
   return res.status(200).json(complaints);
 });
 
-// get complaints made by user
-router.get("/complaints/:id", function (req: Request, res: Response) {});
+router.get("/complaints/:id", async function (req: Request, res: Response) {
+  const { id } = req.params;
 
+  if (!id) {
+    return res.status(400).send("Bad Request");
+  }
+
+  const complaints = await db.complaint.findMany({
+    where: {
+      id: parseInt(id),
+    },
+    include: {
+      author: true,
+      company: true,
+    },
+  });
+  return res.status(200).json(complaints);
+});
+
+router.delete("/complaints/:id", async function (req: Request, res: Response) {
+  const { id } = req.params;
+
+  if (!id) {
+    return res.status(400).send("Bad Request");
+  }
+
+  const complaints = await db.complaint.delete({
+    where: {
+      id: parseInt(id),
+    },
+  });
+  return res.status(200).json(complaints);
+});
+
+router.put("/complaints/:id", async function (req: Request, res: Response) {
+  const { id } = req.params;
+  const { content } = req.body;
+
+  if (!id || !content) {
+    return res.status(400).send("Bad Request");
+  }
+
+  const complaints = await db.complaint.update({
+    where: {
+      id: parseInt(id),
+    },
+    data: {
+      content: content,
+    },
+  });
+  return res.status(200).json(complaints);
+});
 module.exports = router;

@@ -1,0 +1,49 @@
+<div class="container py-5">
+    <h4><%= user.name %> Firmasının Profili</h4>
+    <form method="post" action="/company/profile">
+        <div class="row mb-3">
+            <div class="row mb-3">
+                <label for="firmAdi" class="col-md-4 col-lg-3 col-form-label">Firma Adı</label>
+                <div class="col-md-8 col-lg-9">
+                    <input name="firmaAdi" type="text" class="form-control" id="firmAdi" value="<%= user.name %>">
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <label for="firmaYetkiliAdSoyad" class="col-md-4 col-lg-3 col-form-label">Firma Yetkili Adı
+                    Soyadı</label>
+                <div class="col-md-8 col-lg-9">
+                    <input name="firmaYetkiliAdi" type="text" class="form-control" id="firmaYetkiliAdSoyad"
+                        value="<%= user.authorizedPersonName %>">
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <label for="firmaYetkiliTelefon" class="col-md-4 col-lg-3 col-form-label">Firma Yetkili Telefon
+                    Numarası</label>
+                <div class="col-md-8 col-lg-9">
+                    <input name="firmaYetkiliTelefon" type="text" class="form-control" id="firmaYetkiliTelNo"
+                    value="<%= user.authorizedPersonPhone %>">
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <label for="firmaYetkiliEmail" class="col-md-4 col-lg-3 col-form-label">Firma Yetkili Emaili</label>
+                <div class="col-md-8 col-lg-9">
+                    <input name="firmaYetkiliEmail" type="email" class="form-control" id="firmaYetkiliEmail"
+                        value="<%= user.authorizedPersonEmail %>">
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <label for="firmaSifre" class="col-md-4 col-lg-3 col-form-label">Şifre</label>
+                <div class="col-md-8 col-lg-9">
+                    <input name="firmaSifre" type="password" class="form-control" id="firmaSifre">
+                </div>
+            </div>
+
+            <div class="text-end">
+                <button type="submit" class="btn btn-primary me-4">Değişiklikleri Kaydet</button>
+            </div>
+    </form>
+</div>

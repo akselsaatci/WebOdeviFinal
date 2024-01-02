@@ -1,0 +1,31 @@
+<div class="container py-5">
+    <form action="/user/profile" method="post">
+        <div class="row mb-3">
+            <div class="row mb-3">
+                <label for="adSoyad" class="col-md-4 col-lg-3 col-form-label">Adınız Soyadınız</label>
+                <div class="col-md-8 col-lg-9">
+                    <input required name="name" type="text" class="form-control" id="adSoyad" value="<%= user.name %>">
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <label for="email" class="col-md-4 col-lg-3 col-form-label">E-Mail Adresiniz</label>
+                <div class="col-md-8 col-lg-9">
+                    <input required name="email" type="email" class="form-control" id="email" value="<%= user.email %>">
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <label for="sifre" class="col-md-4 col-lg-3 col-form-label">Şifreniz</label>
+                <div class="col-md-8 col-lg-9">
+                    <input required name="password" type="password" class="form-control" id="sifre"
+                        value="<%= user.password %>">
+                </div>
+            </div>
+
+            <div class="text-end">
+                <button type="submit" class="btn btn-primary me-4">Değişiklikleri Kaydet</button>
+            </div>
+        </div>
+    </form>
+</div>

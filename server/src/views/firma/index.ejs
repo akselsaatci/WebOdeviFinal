@@ -1,0 +1,122 @@
+<div class="container py-5">
+
+    <div class="row justify-content-end my-3">
+        <div class="col-auto">
+        </div>
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Başlık</th>
+                        <th scope="col">Şikayeti Yapan Adı Soyadı</th>
+                        <th scope="col">Şikayet</th>
+                        <th scope="col">Cevap</th>
+                        <th scope="col">Şikayet Tarihi</th>
+                        <th scope="col"></th>
+                    </tr>
+                </thead>
+                <tbody>
+
+
+                    <% for (let i=0; i < complaints.length; i++) { %>
+                        <tr>
+                            <td>
+                                <%= complaints[i].id %>
+                            </td>
+                            <td>
+                                <%= complaints[i].title %>
+                            </td>
+                            <td>
+                                <%= complaints[i].author.name %>
+                            </td>
+                            <td>
+                                <%= complaints[i].content %>
+                            </td>
+                            <td>
+                                <%= complaints[i].answer %>
+                            </td>
+                            <td>
+                                <%= complaints[i].createdAt %>
+                            </td>
+                            <td>
+                                <% if (complaints[i].answer === null) { %>
+                                    <button class="btn btn-primary sikayetDuzenleBtn" data-bs-toggle="modal"
+                                            data-bs-target="#cevapVerModal" id="s_<%= complaints[i].id %>">Cevap Ver</button>
+                                  <% } else { %>
+                                    <button class="btn btn-success">Cevaplandı</button>
+                                  <% } %>
+                            </td>
+                        </tr>
+                        <% } %>
+
+
+
+
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal modal-lg fade" id="cevapVerModal" tabindex="-1" aria-labelledby="cevapVerModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="cevapVerModalLabel">Cevap Ver</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p id="u_content"><span class="fw-bold">Şikayet : </span> Buzdolabı çalışmıyor.</p>
+                <p id="u_user"><span class="fw-bold">Şikayet Eden Kişi : </span> Alperen Erdem</p>
+                <p id="u_date"><span class="fw-bold" >Şikayet Tarihi : </span> 19/12/2023</p>
+                <div class="mb-3">
+                    <label for="exampleFormControlTextarea1" class="form-label fw-bold">Cevabınızı
+                        giriniz</label>
+                    <textarea class="form-control" id="u_answer" rows="3"></textarea>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">İptal et</button>
+                <button type="button" id="close" class="btn btn-danger">Şikayeti Kapat</button>
+                <button type="button" id="send" class="btn btn-primary">Cevabı Gönder</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $('.sikayetDuzenleBtn').on('click', function () {
+            var id = $(this).attr('id').split('_')[1];
+            $.ajax({
+                url: '/complaint/complaints/' + id,
+                type: 'GET',
+                success: function (data) {
+                    console.log(data);
+                    $('#u_content').text("Şikayet : " + data[0].content);
+                    $('#u_user').text('Şikayet Eden Kişi : ' + data[0].author.name);
+                    $('#u_date').text('Şikayet Tarihi : ' + data[0].createdAt);
+                    $('#send').attr('id', 'send_' + data[0].id);
+                    $('#close').attr('id', 'close_' + data[0].id);
+                    
+                }
+            });
+        });
+        $('#send').on('click', function () {
+            var id = $(this).attr('id').split('_')[1];
+            var content = $('#u_answer').val();
+            $.ajax({
+                url: '/company/complaint/' + id,
+                type: 'POST',
+                data: {
+                    content: content
+                },
+                success: function (data) {
+                    location.reload();
+                }
+            });
+        });
+</script>
