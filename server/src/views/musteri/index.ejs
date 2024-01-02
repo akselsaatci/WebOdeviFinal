@@ -3,7 +3,7 @@
         <div class="col-auto">
             
         </div>
-        <div class="table-responsive">
+          <div class="table-responsive">
             <table class="table">
                 <thead>
                     <tr>
@@ -35,7 +35,7 @@
                                 <%= complaints[i].answer %>
                             </td>
                             <td>
-                                <%= complaints[i].createdAt %>
+                                <%= complaints[i].createdAt.toLocaleDateString() %>
                             </td>
                             <td>
                                 <button class="btn btn-primary sikayetDuzenleBtn" data-bs-toggle="modal"
@@ -47,6 +47,7 @@
                 </tbody>
             </table>
         </div>
+       </div>
     </div>
 
 

@@ -37,7 +37,7 @@
                                 <%= complaints[i].answer %>
                             </td>
                             <td>
-                                <%= complaints[i].createdAt %>
+                                <%= complaints[i].createdAt.toLocaleDateString() %>
                             </td>
                             <td>
                                 <% if (complaints[i].answer === null) { %>

@@ -1,0 +1,275 @@
+<div class="container py-4">
+              <div class="table-responsive">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Başlık</th>
+                        <th scope="col">Firma Adı</th>
+                        <th scope="col">Şikayeti Yapan</th>
+                        <th scope="col">İçerik</th>
+                        <th scope="col">Cevap</th>
+                        <th scope="col">Şikayet Tarihi</th>
+                    </tr>
+                </thead>
+                <tbody id="complaints">
+                    <% for (let i=0; i < complaints.length; i++) { %>
+                        <tr>
+                            <td>
+                                <%= complaints[i].id %>
+                            </td>
+                            <td>
+                                <%= complaints[i].title %>
+                            </td>
+                            <td>
+                                <%= complaints[i].company.name %>
+                            </td>
+                            <td>
+                                <%= complaints[i].author.name  %>
+                            </td>
+                            
+                            <td>
+                                <%= complaints[i].content %>
+                            </td>
+                            <td>
+                                <%= complaints[i].answer %>
+                            </td>
+                            <td>
+                                <%= complaints[i].createdAt.toLocaleDateString() %>
+                            </td>
+                         </tr>
+                        <% } %>
+                </tbody>
+            </table>
+        </div>
+     
+</div>
+
+
+<div class="modal modal-lg fade" id="girisYapModal" tabindex="-1" aria-labelledby="girisYapModalLabel"
+    aria-hidden="true">
+    <form id="userLoginForm" onsubmit="return LoginUser(event);">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="girisYapModalLabel">Müşteri Olarak Giriş Yap</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body p-4">
+                    <div class="row justify-content-end">
+                        <div class="col-auto">
+                            <a class="my-auto link-dark custom-link" data-bs-toggle="modal"
+                                data-bs-target="#kayitOlModal">Hesabınız yok mu? Kullanıcı Olarak Hemen Kayıt
+                                Olun!</a>
+                        </div>
+                        <div class="col-auto">
+                            <a class="my-auto link-dark custom-link" data-bs-toggle="modal"
+                                data-bs-target="#kayitOlFirmaModal">Hesabınız yok mu? Firma Olarak Hemen Kayıt
+                                Olun!</a>
+                        </div>
+                    </div>
+                    <div class="container">
+                        <div class="row">
+                            <div class="mb-3 col-12 col-lg-6">
+                                <label class="form-label">E-mail</label>
+                                <input required type="email" id="email" name="email" class="form-control"
+                                    placeholder="Email adresinizi giriniz" aria-label="Username"
+                                    aria-describedby="basic-addon1">
+                            </div>
+                            <div class="mb-3 col-12 col-lg-6">
+                                <label class="form-label">Şifre</label>
+                                <input required type="password" id="password" name="password" class="form-control"
+                                    placeholder="Şifrenizi giriniz" aria-label="Password"
+                                    aria-describedby="basic-addon2">
+                            </div>
+                            <div class="row justify-content-between pe-0">
+                                <a href="#" class="link-dark col-auto align-items-center d-flex">Şifremi Unuttum</a>
+                                <button type="submit" class="btn btn-primary col-4 ">Giriş Yap</button>
+                            </div>
+                            <a class="link-dark col-auto align-items-center d-flex custom-link" data-bs-toggle="modal"
+                                data-bs-target="#firmaGirisModal">Firma olarak giriş yap</a>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+
+
+<div class="modal modal-lg fade" id="firmaGirisModal" tabindex="-1" aria-labelledby="girisYapModalLabel"
+    aria-hidden="true">
+    <form id="companyLoginForm" onsubmit="return LoginCompany(event);">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="girisYapModalLabel">Firma Olarak Giriş Yap</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body p-4">
+                    <div class="row justify-content-end">
+                        <div class="col-auto">
+                            <a class="my-auto link-dark custom-link" data-bs-toggle="modal"
+                                data-bs-target="#kayitOlModal">Hesabınız yok mu? Firma Olarak Hemen Kayıt Olun!</a>
+                        </div>
+                        <div class="col-auto">
+                            <a class="my-auto link-dark custom-link" data-bs-toggle="modal"
+                                data-bs-target="#kayitOlFirmaModal">Hesabınız yok mu? Firma Olarak Hemen Kayıt
+                                Olun!</a>
+                        </div>
+                    </div>
+                    <div class="container">
+                        <div class="row">
+                            <div class="mb-3 col-12 col-lg-6">
+                                <label class="form-label">E-mail</label>
+                                <input required type="email" id="firma_email" name="email" class="form-control"
+                                    placeholder="Email adresinizi giriniz" aria-label="Username"
+                                    aria-describedby="basic-addon1">
+                            </div>
+                            <div class="mb-3 col-12 col-lg-6">
+                                <label class="form-label">Şifre</label>
+                                <input required type="password" id="firma_password" name="password" class="form-control"
+                                    placeholder="Şifrenizi giriniz" aria-label="Password"
+                                    aria-describedby="basic-addon2">
+                            </div>
+                            <div class="row justify-content-between pe-0">
+                                <a href="#" class="link-dark col-auto align-items-center d-flex">Şifremi Unuttum</a>
+                                <button type="submit" class="btn btn-primary col-4 ">Giriş Yap</button>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+
+
+<div class="modal modal-lg fade" id="kayitOlModal" tabindex="-1" aria-labelledby="kayitOlModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="kayitOlModalLabel">Kayıt Ol</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body p-4">
+                <form onsubmit="return RegisterUser(event)">
+                    <div class="container">
+                        <div class="row">
+                            <div class="mb-3 col-12 col-lg-6">
+                                <label class="form-label">T.C</label>
+                                <input required type="text" id="ur_tc" class="form-control"
+                                    placeholder="T.C kimlik numaranızı giriniz" aria-label="Username"
+                                    aria-describedby="basic-addon1">
+                            </div>
+                            <div class="mb-3 col-12 col-lg-6">
+                                <label class="form-label">Ad Soyad</label>
+                                <input required type="text" id="ur_name" class="form-control"
+                                    placeholder="Adınızı soyadınızı giriniz" aria-label="Username"
+                                    aria-describedby="basic-addon1">
+                            </div>
+                            <div class="mb-3 col-12 col-lg-6">
+                                <label class="form-label">E-mail</label>
+                                <input required type="email" id="ur_email" class="form-control"
+                                    placeholder="Email adresinizi giriniz" aria-label="Username"
+                                    aria-describedby="basic-addon1">
+                            </div>
+                            <div class="mb-3 col-12 col-lg-6">
+                                <label class="form-label">Şifre</label>
+                                <input required type="password" class="form-control" placeholder="Şifrenizi giriniz"
+                                    aria-label="Password" id="ur_password" aria-describedby="basic-addon2">
+                            </div>
+                            <div class="row justify-content-end pe-0">
+                                <button type="submit" class="btn btn-primary col-4 ">Kayıt Ol</button>
+
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal modal-lg fade" id="kayitOlFirmaModal" tabindex="-1" aria-labelledby="kayitOlModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="kayitOlModalLabel">Kayıt Ol</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body p-4">
+                <form onsubmit="return RegisterCompany(event)">
+                    <div class="container">
+                        <div class="row">
+                            <div class="mb-3 col-12 col-lg-6">
+                                <label class="form-label">Ad soyad</label>
+                                <input required id="cr_authorizedPersonName" type="text" class="form-control"
+                                    placeholder="Ad soyad" aria-label="Username" aria-describedby="basic-addon1">
+                            </div>
+                            <div class="mb-3 col-12 col-lg-6">
+                                <label class="form-label">Firma Adı</label>
+                                <input required id="cr_name" type="text" class="form-control" placeholder="Firma adı"
+                                    aria-label="Username" aria-describedby="basic-addon1">
+                            </div>
+                            <div class="mb-3 col-12 col-lg-6">
+                                <label class="form-label">E-mail</label>
+                                <input required id="cr_authorizedPersonEmail" type="email" class="form-control"
+                                    placeholder="Email adresinizi giriniz" aria-label="Username"
+                                    aria-describedby="basic-addon1">
+                            </div>
+                            <div class="mb-3 col-12 col-lg-6">
+                                <label class="form-label">Telefon Numarası</label>
+                                <input required id="cr_authorizedPersonPhone" type="text" class="form-control"
+                                    placeholder="Telefon numaranızı giriniz" aria-label="Username"
+                                    aria-describedby="basic-addon1">
+                            </div>
+                            <div class="col-lg-6">
+                                <label class="form-label">Kategorisi</label>
+                                <select required id="cr_category" class="form-select"
+                                    aria-label="Default select example">
+
+                                </select>
+                            </div>
+                            <div class="mb-3 col-12 col-lg-6">
+                                <label class="form-label">Şifre</label>
+                                <input required id="cr_authorizedPersonPassword" type="password" class="form-control"
+                                    placeholder="Şifrenizi giriniz" aria-label="Password"
+                                    aria-describedby="basic-addon2">
+                            </div>
+                            <div class="row justify-content-end pe-0">
+                                <button type="submit" class="btn btn-primary col-4 ">Kayıt Ol</button>
+
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script>
+    // document onload
+    $(document).ready(async function () {
+        const categories = getAllCategories(function (data) {
+            console.log(categories);
+            var select = $("#cr_category");
+            $.each(data, function (key, value) {
+                console.log(value);
+                select.append('<option value=' + value.id + '>' + value.name + '</option>');
+            });
+        });
+    });
+
+
+</script>
+
+
